@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Resident</title>
+    <link rel="stylesheet" href="css/ARstyles.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo">
+        <img src="techcare-logo.png" alt="TechCare Logo" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li class="active"><a href="#">Residents</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Visualization</a></li>
+          <li><a href="#">Reports</a></li>
+          <li><a href="#">Website</a></li>
+          <li><a href="#">ID System</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main-content">
+      <header>
+        <div class="user-info">
+          <img src="user-avatar.png" alt="User Avatar" />
+          <div class="user-details">
+            <p>Admin User</p>
+            <p>Health Practitioner</p>
+          </div>
+        </div>
+      </header>
+      <section class="add-resident">
+        <h1>Add Resident</h1>
+        <form>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" />
+          </div>
+          <div class="form-group">
+            <label for="middleName">Middle Name</label>
+            <input type="text" id="middleName" name="middleName" />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" />
+          </div>
+          <div class="form-group">
+            <label for="suffix">Suffix</label>
+            <input type="text" id="suffix" name="suffix" />
+          </div>
+          <div class="form-group">
+            <label for="sex">Sex</label>
+            <input type="text" id="sex" name="sex" />
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" />
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age" />
+          </div>
+          <div class="form-group">
+            <label for="pob">Place of Birth</label>
+            <input type="text" id="pob" name="pob" />
+          </div>
+          <div class="form-group">
+            <label for="religion">Religion</label>
+            <input type="text" id="religion" name="religion" />
+          </div>
+          <div class="form-group">
+            <label for="citizenship">Citizenship</label>
+            <input type="text" id="citizenship" name="citizenship" />
+          </div>
+          <div class="form-group">
+            <label for="streetName">Street Name</label>
+            <input type="text" id="streetName" name="streetName" />
+          </div>
+          <div class="form-group">
+            <label for="zone">Zone</label>
+            <input type="text" id="zone" name="zone" />
+          </div>
+          <div class="form-group">
+            <label for="barangay">Barangay</label>
+            <input type="text" id="barangay" name="barangay" />
+          </div>
+          <div class="form-group">
+            <label for="cityMunicipality">City/Municipality</label>
+            <input type="text" id="cityMunicipality" name="cityMunicipality" />
+          </div>
+          <div class="form-group">
+            <label for="province">Province</label>
+            <input type="text" id="province" name="province" />
+          </div>
+          <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input type="text" id="zipCode" name="zipCode" />
+          </div>
+          <div class="form-group">
+            <label for="contactNo">Contact No.</label>
+            <input type="text" id="contactNo" name="contactNo" />
+          </div>
+          <div class="form-group">
+            <label for="educationalAttainment">Educational Attainment</label>
+            <input
+              type="text"
+              id="educationalAttainment"
+              name="educationalAttainment"
+            />
+          </div>
+          <div class="form-group">
+            <label for="occupation">Occupation</label>
+            <input type="text" id="occupation" name="occupation" />
+          </div>
+          <div class="form-group">
+            <label for="civilStatus">Civil Status</label>
+            <input type="text" id="civilStatus" name="civilStatus" />
+          </div>
+          <div class="form-group">
+            <label for="laborForceStatus">Labor Force Status</label>
+            <input type="text" id="laborForceStatus" name="laborForceStatus" />
+          </div>
+          <div class="form-group">
+            <label for="voterStatus">Voter Status</label>
+            <input type="text" id="voterStatus" name="voterStatus" />
+          </div>
+          <div class="form-group">
+            <label for="pwdStatus">PWD Status</label>
+            <input type="text" id="pwdStatus" name="pwdStatus" />
+          </div>
+          <div class="form-group">
+            <label for="fourPsBeneficiary">4Ps Beneficiary</label>
+            <input
+              type="text"
+              id="fourPsBeneficiary"
+              name="fourPsBeneficiary"
+            />
+          </div>
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="text" id="longitude" name="longitude" />
+          </div>
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="text" id="latitude" name="latitude" />
+          </div>
+          <div class="form-group">
+            <label for="covidVaccineStatus">Covid Vaccine Status</label>
+            <input
+              type="text"
+              id="covidVaccineStatus"
+              name="covidVaccineStatus"
+            />
+          </div>
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" id="image" name="image" />
+          </div>
+        </form>
+        <div class="map">
+          <!-- Embed map here -->
+          <img src="map-placeholder.png" alt="Map Placeholder" />
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
