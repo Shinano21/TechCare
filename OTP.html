@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Password</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #e0f0f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: linear-gradient(135deg, #c2ffd8 10%, #465efb 100%);
+      }
+
+      .container {
+        display: flex;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        max-width: 800px;
+        width: 100%;
+      }
+
+      .image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f7f7f7;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+        border-right: 1px solid #ccc;
+      }
+
+      .form-container {
+        flex: 1;
+        padding: 20px;
+        background-color: white;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: 36px;
+        color: #333;
+        font-weight: lighter;
+      }
+
+      p {
+        font-size: 14px;
+        margin-bottom: 20px;
+        color: #666;
+      }
+
+      .otp-inputs {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        margin-top: 100px;
+      }
+
+      .otp-inputs input {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+        border: 1px solid #a5a3a3;
+        border-radius: 5px;
+        margin-bottom: 70px;
+      }
+
+      .error-message {
+        color: red;
+        text-align: center;
+        display: none;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4d869c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 50px;
+      }
+
+      button:hover {
+        background-color: #006f99;
+      }
+
+      .back-to-login {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #629caa;
+        text-decoration: none;
+        font-size: 12px;
+      }
+
+      .back-to-login:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="image-container">
+        <img src="images/laptopAndPhone.jpg" alt="Background Image" />
+      </div>
+      <div class="form-container">
+        <h1>Forgot Password</h1>
+        <form id="otpForm" method="POST" action="verify_otp.php">
+          <p>Enter the OTP code we sent</p>
+          <div class="otp-inputs">
+            <input
+              type="text"
+              name="otp[]"
+              maxlength="1"
+              oninput="moveToNext(this)"
+              onkeydown="moveToPrev(event)"
+              onkeypress="return isNumber(event)"
+              pattern="[0-9]*"
+              inputmode="numeric"
+            />
+            <input
+              type="text"
+              name="otp[]"
+              maxlength="1"
+              oninput="moveToNext(this)"
+              onkeydown="moveToPrev(event)"
+              onkeypress="return isNumber(event)"
+              pattern="[0-9]*"
+              inputmode="numeric"
+            />
+            <input
+              type="text"
+              name="otp[]"
+              maxlength="1"
+              oninput="moveToNext(this)"
+              onkeydown="moveToPrev(event)"
+              onkeypress="return isNumber(event)"
+              pattern="[0-9]*"
+              inputmode="numeric"
+            />
+            <input
+              type="text"
+              name="otp[]"
+              maxlength="1"
+              oninput="moveToNext(this)"
+              onkeydown="moveToPrev(event)"
+              onkeypress="return isNumber(event)"
+              pattern="[0-9]*"
+              inputmode="numeric"
+            />
+            <input
+              type="text"
+              name="otp[]"
+              maxlength="1"
+              oninput="moveToNext(this)"
+              onkeydown="moveToPrev(event)"
+              onkeypress="return isNumber(event)"
+              pattern="[0-9]*"
+              inputmode="numeric"
+            />
+            <input
+              type="text"
+              name="otp[]"
+              maxlength="1"
+              oninput="moveToNext(this)"
+              onkeydown="moveToPrev(event)"
+              onkeypress="return isNumber(event)"
+              pattern="[0-9]*"
+              inputmode="numeric"
+            />
+          </div>
+          <div class="error-message" id="errorMessage">
+            Invalid OTP. Please try again.
+          </div>
+          <button type="submit" name="submit">Submit</button>
+          <a href="index.html" class="back-to-login">Back to login</a>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function moveToNext(currentInput) {
+        if (currentInput.value.length >= 1) {
+          var nextInput = currentInput.nextElementSibling;
+          if (nextInput !== null) {
+            nextInput.focus();
+          }
+        }
+      }
+
+      function moveToPrev(event) {
+        if (event.key === "Backspace" && event.target.value === "") {
+          var prevInput = event.target.previousElementSibling;
+          if (prevInput !== null) {
+            prevInput.focus();
+          }
+        }
+      }
+
+      function isNumber(event) {
+        var charCode = event.which ? event.which : event.keyCode;
+        if (charCode < 48 || charCode > 57) {
+          return false;
+        }
+        return true;
+      }
+
+      document
+        .getElementById("otpForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var form = this;
+          var formData = new FormData(form);
+          var xhr = new XMLHttpRequest();
+
+          xhr.open("POST", form.action, true);
+          xhr.setRequestHeader("Accept", "application/json");
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              var response = JSON.parse(xhr.responseText);
+              if (response.success) {
+                window.location.href = "new_password.html";
+              } else {
+                document.getElementById("errorMessage").innerText =
+                  response.message;
+                document.getElementById("errorMessage").style.display = "block";
+                form
+                  .querySelectorAll(".otp-inputs input")
+                  .forEach(function (input) {
+                    input.value = "";
+                  });
+                form.querySelector(".otp-inputs input").focus();
+              }
+            }
+          };
+
+          xhr.send(formData);
+        });
+    </script>
+  </body>
+</html>
