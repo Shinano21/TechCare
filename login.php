@@ -39,8 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Set response data
             $response['success'] = true;
-            if ($row['user_type'] == 'admin' || $row['user_type'] == 'bhw') {
-                $response['redirect'] = 'dashboard.php';
+            if ($row['user_type'] == 'admin') {
+                $response['redirect'] = 'admin/dashboard.php';
+            } elseif ($row['user_type'] == 'bhw') {
+                $response['redirect'] = 'bhw/dashboard.php';
             } else {
                 $response['redirect'] = 'landing.php';
             }
