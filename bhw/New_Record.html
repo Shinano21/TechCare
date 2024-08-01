@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Record</title>
+    <link rel="stylesheet" href="css/NRstyles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="logo">
+          <img src="logo.png" alt="TechCare+ Logo" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Residents</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Visualization</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Website</a></li>
+            <li><a href="#">ID System</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="main-content">
+        <h1>New Record</h1>
+        <form>
+          <fieldset>
+            <legend>Personal Information</legend>
+            <div class="form-group">
+              <label for="registration-date">Date of Registration*</label>
+              <input
+                type="date"
+                id="registration-date"
+                name="registration-date"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="birth-date">Date of Birth</label>
+              <input type="date" id="birth-date" name="birth-date" />
+            </div>
+            <div class="form-group">
+              <label for="serial-number">Serial Number</label>
+              <input type="text" id="serial-number" name="serial-number" />
+            </div>
+            <div class="form-group">
+              <label for="se-status">SE Status*</label>
+              <input type="text" id="se-status" name="se-status" required />
+            </div>
+            <div class="form-group">
+              <label for="sex">Sex</label>
+              <input type="text" id="sex" name="sex" />
+            </div>
+            <div class="form-group">
+              <label for="child-first-name"
+                >Complete Name of Child - First Name*</label
+              >
+              <input
+                type="text"
+                id="child-first-name"
+                name="child-first-name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="child-middle-name">Middle Name</label>
+              <input
+                type="text"
+                id="child-middle-name"
+                name="child-middle-name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="child-last-name">Last Name*</label>
+              <input
+                type="text"
+                id="child-last-name"
+                name="child-last-name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="child-suffix">Suffix</label>
+              <input type="text" id="child-suffix" name="child-suffix" />
+            </div>
+            <div class="form-group">
+              <label for="mother-first-name"
+                >Complete Name of Mother - First Name*</label
+              >
+              <input
+                type="text"
+                id="mother-first-name"
+                name="mother-first-name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="mother-middle-name">Middle Name</label>
+              <input
+                type="text"
+                id="mother-middle-name"
+                name="mother-middle-name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="mother-last-name">Last Name*</label>
+              <input
+                type="text"
+                id="mother-last-name"
+                name="mother-last-name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="mother-suffix">Suffix</label>
+              <input type="text" id="mother-suffix" name="mother-suffix" />
+            </div>
+            <div class="form-group">
+              <label for="zone">Complete Address - Zone*</label>
+              <input type="text" id="zone" name="zone" required />
+            </div>
+            <div class="form-group">
+              <label for="barangay">Barangay*</label>
+              <input type="text" id="barangay" name="barangay" required />
+            </div>
+            <div class="form-group">
+              <label for="city">City/Municipality*</label>
+              <input type="text" id="city" name="city" required />
+            </div>
+            <div class="form-group">
+              <label for="province">Province*</label>
+              <input type="text" id="province" name="province" required />
+            </div>
+            <div class="form-group">
+              <label for="father-first-name"
+                >Complete Name of Father - First Name*</label
+              >
+              <input
+                type="text"
+                id="father-first-name"
+                name="father-first-name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="father-middle-name">Middle Name</label>
+              <input
+                type="text"
+                id="father-middle-name"
+                name="father-middle-name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="father-last-name">Last Name*</label>
+              <input
+                type="text"
+                id="father-last-name"
+                name="father-last-name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="father-suffix">Suffix</label>
+              <input type="text" id="father-suffix" name="father-suffix" />
+            </div>
+          </fieldset>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
