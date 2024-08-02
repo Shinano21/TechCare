@@ -25,6 +25,7 @@ header('Expires: 0');
         body {
             font-family: Arial, sans-serif;
             background-image: linear-gradient(135deg, #C2FFD8 10%, #465EFB 100%);
+            background-attachment: fixed;
         }
         .sidebar {
             height: 100vh;
@@ -52,9 +53,13 @@ header('Expires: 0');
         .main-content {
             margin-left: 250px;
             padding: 20px;
+            margin-top: 50px;
         }
         .card {
             margin-bottom: 20px;
+            dispay: flex;
+            justify-content:center;
+            align-items: center;
         }
         .card-container {
             background-color: #ffffff; /* Set parent container background to white */
@@ -248,7 +253,7 @@ header('Expires: 0');
 <body>
 <div class="sidebar text-center">
     <div class="text-center mb-5">
-        <img src="images/LOGO.svg" alt="TechCare" width="100">
+        <img src="../images/LOGO.svg" alt="TechCare" width="100">
     </div>
     <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
     <a href="#"><i class="bi bi-people"></i>Residents</a>
@@ -275,13 +280,13 @@ header('Expires: 0');
 
 <div class="main-content">
     <div class="card-container">
-        <h1>Dashboard</h1>
+        <h1>Services</h1>
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">Services</h2>
+                <h2 class="card-title"></h2>
                 <div class="create-account-container">
                     <div class="create-account-image">
-                        <img src="images/manWithLaptop.jpg" alt="Working on a laptop" />
+                        <img src="../images/manWithLaptop.jpg" alt="Working on a laptop" />
                     </div>
                    <div class="create-account-form">
     <h2>Create Account</h2>
