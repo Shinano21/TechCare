@@ -1,0 +1,235 @@
+-- Create accounts table
+CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `user_type` ENUM('resident', 'admin', 'bhw') NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+);
+
+-- Create otp table
+CREATE TABLE `otp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `otp_number` int(6) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `email` (`email`),
+  CONSTRAINT `otp_ibfk_1` FOREIGN KEY (`email`) REFERENCES `accounts` (`email`) ON DELETE CASCADE
+);
+
+-- Create procedure to generate and insert OTP
+DELIMITER $$
+CREATE PROCEDURE `generate_and_insert_otp` (IN `user_email` VARCHAR(100))
+BEGIN
+    DECLARE otp INT;
+    SET otp = FLOOR(100000 + RAND() * 900000);
+    INSERT INTO otp (otp_number, email) VALUES (otp, user_email);
+END$$
+DELIMITER ;
+
+-- Create home table
+CREATE TABLE home (
+    home_id INT AUTO_INCREMENT PRIMARY KEY,
+    center_name VARCHAR(255),
+    address VARCHAR(255),
+    email VARCHAR(255),
+    contact VARCHAR(255),
+    open_hours VARCHAR(255),
+    bg_img VARCHAR(255),
+    short_desc TEXT,
+    goal TEXT,
+    section_pic VARCHAR(255),
+    contact_mess TEXT,
+    office_hrs VARCHAR(255),
+    programs_pic VARCHAR(255),
+    announce_pic VARCHAR(255)
+);
+
+-- Create brgy_health table
+CREATE TABLE brgy_health (
+    bh_health_id INT AUTO_INCREMENT PRIMARY KEY,
+    home_id INT,
+    name VARCHAR(255),
+    position VARCHAR(255),
+    pic VARCHAR(255),
+    FOREIGN KEY (home_id) REFERENCES home(home_id)
+);
+
+-- Create programs table
+CREATE TABLE programs (
+    programs_id INT AUTO_INCREMENT PRIMARY KEY,
+    home_id INT,
+    program_type VARCHAR(255),
+    prog_heading VARCHAR(255),
+    prog_body TEXT,
+    prog_pic VARCHAR(255),
+    post_date DATE,
+    FOREIGN KEY (home_id) REFERENCES home(home_id)
+);
+
+-- Create logo table
+CREATE TABLE logo (
+    logo_id INT AUTO_INCREMENT PRIMARY KEY,
+    home_id INT,
+    navbar_logo VARCHAR(255),
+    logo_pic VARCHAR(255),
+    center_name VARCHAR(255),
+    short_desc TEXT,
+    email VARCHAR(255),
+    contact VARCHAR(255),
+    address VARCHAR(255),
+    FOREIGN KEY (home_id) REFERENCES home(home_id)
+);
+
+-- Create contact_us table
+CREATE TABLE contact_us (
+    contact_us_id INT AUTO_INCREMENT PRIMARY KEY,
+    home_id INT,
+    short_mess TEXT,
+    email VARCHAR(255),
+    contact VARCHAR(255),
+    address VARCHAR(255),
+    fb_name VARCHAR(255),
+    fb_link VARCHAR(255),
+    FOREIGN KEY (home_id) REFERENCES home(home_id)
+);
+
+-- Create about table
+CREATE TABLE about (
+    about_id INT AUTO_INCREMENT PRIMARY KEY,
+    home_id INT,
+    header_pic VARCHAR(255),
+    section_head VARCHAR(255),
+    section_subhead VARCHAR(255),
+    section_body TEXT,
+    section_pic VARCHAR(255),
+    FOREIGN KEY (home_id) REFERENCES home(home_id)
+);
+
+-- Create announcements table
+CREATE TABLE announcements (
+    announcements_id INT AUTO_INCREMENT PRIMARY KEY,
+    home_id INT,
+    announce_type VARCHAR(255),
+    announce_heading VARCHAR(255),
+    announce_body TEXT,
+    announce_pic VARCHAR(255),
+    post_date DATE,
+    FOREIGN KEY (home_id) REFERENCES home(home_id)
+);
+
+-- Create admin table
+CREATE TABLE admin (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255),
+    middle_name VARCHAR(255),
+    last_name VARCHAR(255),
+    date_of_birth DATE,
+    email VARCHAR(255),
+    password VARCHAR(255),
+    img VARCHAR(255),
+    status VARCHAR(255)
+);
+
+-- Create users table
+CREATE TABLE users (
+    users_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    middle_name VARCHAR(255),
+    phone_number VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    user_type VARCHAR(255),
+    status VARCHAR(255)
+);
+
+-- Create message table
+CREATE TABLE message (
+    msg_id INT AUTO_INCREMENT PRIMARY KEY,
+    incoming_msg_id INT,
+    outgoing_msg_id INT,
+    msg TEXT,
+    FOREIGN KEY (incoming_msg_id) REFERENCES users(users_id),
+    FOREIGN KEY (outgoing_msg_id) REFERENCES users(users_id)
+);
+
+-- Create residents table
+CREATE TABLE residents (
+    resident_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255),
+    middle_name VARCHAR(255),
+    last_name VARCHAR(255),
+    suffix_name VARCHAR(255),
+    gender VARCHAR(255),
+    date_of_birth DATE,
+    place_of_birth VARCHAR(255),
+    religion VARCHAR(255),
+    citizenship VARCHAR(255),
+    street VARCHAR(255),
+    zone VARCHAR(255),
+    barangay VARCHAR(255),
+    municipal VARCHAR(255),
+    province VARCHAR(255),
+    zipcode VARCHAR(255),
+    contact_number VARCHAR(255),
+    education VARCHAR(255),
+    occupation VARCHAR(255),
+    civil_status VARCHAR(255),
+    labor_status VARCHAR(255),
+    voter_status VARCHAR(255),
+    pwd_status VARCHAR(255),
+    four_p VARCHAR(255),
+    status VARCHAR(255),
+    longitude DECIMAL(10, 8),
+    latitude DECIMAL(10, 8),
+    profile_pic VARCHAR(255),
+    id_type VARCHAR(255),
+    id_number VARCHAR(255),
+    mom_name VARCHAR(255),
+    mom_lname VARCHAR(255),
+    qr_code VARCHAR(255)
+);
+
+-- Create nutrition table
+CREATE TABLE nutrition (
+    nutrition_id INT AUTO_INCREMENT PRIMARY KEY,
+    resident_id INT,
+    nutrition_type VARCHAR(255),
+    supplements TEXT,
+    date_assessed DATE,
+    height DECIMAL(5, 2),
+    weight DECIMAL(5, 2),
+    status VARCHAR(255),
+    remarks TEXT,
+    FOREIGN KEY (resident_id) REFERENCES residents(resident_id)
+);
+
+-- Create family_planning table
+CREATE TABLE family_planning (
+    family_planning_id INT AUTO_INCREMENT PRIMARY KEY,
+    resident_id INT,
+    date_of_registration DATE,
+    method VARCHAR(255),
+    date_started DATE,
+    date_ended DATE,
+    notes TEXT,
+    FOREIGN KEY (resident_id) REFERENCES residents(resident_id)
+);
+
+-- Create immunization table
+CREATE TABLE immunization (
+    immunization_id INT AUTO_INCREMENT PRIMARY KEY,
+    resident_id INT,
+    vaccine_name VARCHAR(255),
+    immunization_type VARCHAR(255),
+    immunization_date DATE,
+    immunization_location VARCHAR(255),
+    immunization_status VARCHAR(255),
+    notes TEXT,
+    FOREIGN KEY (resident_id) REFERENCES residents(resident_id)
+);
