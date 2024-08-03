@@ -256,7 +256,7 @@ header('Expires: 0');
         <img src="../images/LOGO.svg" alt="TechCare" width="100">
     </div>
     <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
-    <a href="#"><i class="bi bi-people"></i>Residents</a>
+    <a href="Add_Resident.html"><i class="bi bi-people"></i>Residents</a>
 
     <!-- Services Dropdown -->
     <div class="dropdown">
