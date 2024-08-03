@@ -36,18 +36,18 @@ header('Expires: 0');
             background-color: #f8f9fa;
             padding-top: 20px;
         }
-        .sidebar a {
+        .sidebar a, .offcanvas-body a  {
             padding: 10px 15px;
             text-decoration: none;
             font-size: 18px;
             color: #333;
             display: block;
         }
-        .sidebar a i {
+        .sidebar a i,  .offcanvas-body a i {
             margin-right: 10px;
             font-size: 20px;
         }
-        .sidebar a:hover {
+        .sidebar a:hover,  .offcanvas-body a:hover {
             background-color: #7AB2B2;
         }
         .main-content {
@@ -62,7 +62,7 @@ header('Expires: 0');
             align-items: center;
         }
         .card-container {
-            background-color: #ffffff; /* Set parent container background to white */
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -70,16 +70,18 @@ header('Expires: 0');
         }
         .create-account-container {
             display: flex;
+            flex-direction: column;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
             background-color: #ffffff;
-            max-width: 800px; /* Adjust this value as needed */
+            max-width: 800px;
             width: 90%;
-            height: 550px; /* Adjust this value as needed */
+            margin: auto;
         }
         .create-account-image {
-            flex: 1;
+            width: 100%;
+            height: 200px;
             overflow: hidden;
         }
         .create-account-image img {
@@ -88,12 +90,12 @@ header('Expires: 0');
             object-fit: cover;
         }
         .create-account-form {
-            padding: 40px;
+            padding: 20px;
             flex: 1;
         }
         .create-account-form h2 {
             margin-bottom: 20px;
-            font-size: 30px;
+            font-size: 24px;
             color: #333;
             font-weight: lighter;
         }
@@ -103,10 +105,11 @@ header('Expires: 0');
         }
         .create-account-form input[type="text"],
         .create-account-form input[type="email"],
-        .create-account-form input[type="password"] {
-            width: calc(100% - 20px);
+        .create-account-form input[type="password"],
+        .create-account-form select {
+            width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -120,7 +123,7 @@ header('Expires: 0');
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%; /* Adjust this value as needed */
+            width: 100%;
         }
         .create-account-form button:hover {
             background-color: #006f99;
@@ -137,6 +140,22 @@ header('Expires: 0');
         .create-account-form .login-link a:hover {
             text-decoration: underline;
         }
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 0;
+                margin-top: 0;
+            }
+            .sidebar {
+                display: none;
+            }
+            .create-account-container {
+                flex-direction: column;
+            }
+            .create-account-image {
+                height: 200px;
+            }
+        }
+        
         .error-message,
         .success-message {
             color: red;
@@ -251,80 +270,122 @@ header('Expires: 0');
     </script>
 </head>
 <body>
-<div class="sidebar text-center">
-    <div class="text-center mb-5">
-        <img src="../images/LOGO.svg" alt="TechCare" width="100">
-    </div>
-    <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
-    <a href="Add_Resident.html"><i class="bi bi-people"></i>Residents</a>
+<div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar for Larger Screens -->
+            <div class="col-lg d-none d-lg-block sidebar">
+                <div class="text-center mb-5">
+                    <img src="../images/LOGO.svg" alt="TechCare" width="100">
+                </div>
+                <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                <a href="#"><i class="bi bi-people"></i>Residents</a>
 
-    <!-- Services Dropdown -->
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-wrench"></i>Services
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-            <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
-            <li><a class="dropdown-item" href="#">Nutrition</a></li>
-            <li><a class="dropdown-item" href="#">More</a></li>
-        </ul>
-    </div>
+                <!-- Services Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-wrench"></i>Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                        <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                        <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                        <li><a class="dropdown-item" href="#">More</a></li>
+                    </ul>
+                </div>
 
-    <a href="#"><i class="bi bi-file-earmark-medical"></i>Medical History</a>
-    <a href="#"><i class="bi bi-calendar"></i>Appointments</a>
-    <a href="#"><i class="bi bi-clipboard-data"></i>Reports</a>
-    <a href="#"><i class="bi bi-clock-history"></i>Reminders</a>
-    <a href="#"><i class="bi bi-gear"></i>Settings</a>
-    <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
-</div>
+                <a href="#"><i class="bi bi-file-earmark-medical"></i>Medical History</a>
+                <a href="#"><i class="bi bi-calendar"></i>Appointments</a>
+                <a href="#"><i class="bi bi-clipboard-data"></i>Reports</a>
+                <a href="#"><i class="bi bi-clock-history"></i>Reminders</a>
+                <a href="#"><i class="bi bi-gear"></i>Settings</a>
+                <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+            </div>
 
-<div class="main-content">
-    <div class="card-container">
-        <h1>Services</h1>
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title"></h2>
-                <div class="create-account-container">
-                    <div class="create-account-image">
-                        <img src="../images/manWithLaptop.jpg" alt="Working on a laptop" />
+            <!-- Offcanvas Sidebar for Smaller Screens -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="text-center mb-5">
+                        <img src="../images/LOGO.svg" alt="TechCare" width="100">
                     </div>
-                   <div class="create-account-form">
-    <h2>Create Account</h2>
-    <p>Fill in your details to create an account</p>
-    <form name="createAccount" action="acreate.php" method="post" onsubmit="return validateForm()">
-        <input type="text" name="first_name" placeholder="First Name" required />
-        <input type="text" name="last_name" placeholder="Last Name" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="password" name="password" id="password" placeholder="Password" required />
+                    <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                    <a href="#"><i class="bi bi-people"></i>Residents</a>
 
-        <!-- Role Dropdown -->
-        <label for="role">Select Role:</label>
-        <select name="role" id="role" required>
-            <option value="" disabled selected>Select a role</option>
-            <option value="bhw">BHW</option>
-            <option value="admin">Admin</option>
-        </select>
+                    <!-- Services Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-wrench"></i>Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                            <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                            <li><a class="dropdown-item" href="#">More</a></li>
+                        </ul>
+                    </div>
 
-        <div id="error-message" class="error-message"></div>
-        <div class="show-password">
-            <label for="show-password">Show Password</label>
-            <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()" />
-        </div>
-        <div class="button-container">
-            <button type="submit">Create Account</button>
-        </div>
-        <div class="login-link">
-            <p>Already have an account? <a href="index.html">Login</a></p>
-        </div>
-    </form>
-</div>
+                    <a href="#"><i class="bi bi-file-earmark-medical"></i>Medical History</a>
+                    <a href="#"><i class="bi bi-calendar"></i>Appointments</a>
+                    <a href="#"><i class="bi bi-clipboard-data"></i>Reports</a>
+                    <a href="#"><i class="bi bi-clock-history"></i>Reminders</a>
+                    <a href="#"><i class="bi bi-gear"></i>Settings</a>
+                    <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+                </div>
+            </div>
 
+            <!-- Sidebar Toggle Button for Smaller Screens -->
+            <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <!-- Main Content -->
+            <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content">
+                <div class="card-container">
+                  
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title"></h2>
+                            <div class="create-account-container">
+                                <div class="create-account-image">
+                                    <img src="../images/manWithLaptop.jpg" alt="Working on a laptop" />
+                                </div>
+                                <div class="create-account-form">
+                                    <h2>Create Account</h2>
+                                    <p>Fill in your details to create an account</p>
+                                    <form name="createAccount" action="acreate.php" method="post" onsubmit="return validateForm()">
+                                        <input type="text" name="first_name" placeholder="First Name" required />
+                                        <input type="text" name="last_name" placeholder="Last Name" required />
+                                        <input type="email" name="email" placeholder="Email" required />
+                                        <input type="password" name="password" id="password" placeholder="Password" required />
+
+                                        <!-- Role Dropdown -->
+                                        <label for="role">Select Role:</label>
+                                        <select name="role" id="role" required>
+                                            <option value="" disabled selected>Select a role</option>
+                                            <option value="bhw">BHW</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+
+                                        <div id="error-message" class="error-message"></div>
+                                        <div class="show-password">
+                                            <label for="show-password">Show Password</label>
+                                            <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()" />
+                                        </div>
+                                        <div class="button-container">
+                                            <button type="submit">Create Account</button>
+                                        </div>
+                                        <div class="login-link">
+                                            <p>Already have an account? <a href="index.html">Login</a></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
 <!-- Logout Confirmation Modal -->
 <div id="logoutModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050; display: flex; align-items: center; justify-content: center;">
     <div class="modal-content" style="padding: 20px; border: 2px solid #7AB2B2; border-radius: 10px; text-align: center; background-color: #f8f9fa; max-width: 400px; width: 100%;">
