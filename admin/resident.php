@@ -103,6 +103,11 @@ header('Expires: 0');
 
       <div class="container mt-4">
         <h1 class="mt-5">Residents</h1>
+        <div class="d-flex justify-content-end mb-3">
+          <a href="add_resident.html" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Add Resident
+          </a>
+        </div>
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
