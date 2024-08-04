@@ -346,9 +346,9 @@ header('Expires: 0');
                         <div class="card-body">
                             <h2 class="card-title"></h2>
                             <div class="create-account-container">
-                                <div class="create-account-image">
+                                <!-- <div class="create-account-image">
                                     <img src="../images/manWithLaptop.jpg" alt="Working on a laptop" />
-                                </div>
+                                </div> -->
                                 <div class="create-account-form">
                                     <h2>Create Account</h2>
                                     <p>Fill in your details to create an account</p>
@@ -373,9 +373,6 @@ header('Expires: 0');
                                         </div>
                                         <div class="button-container">
                                             <button type="submit">Create Account</button>
-                                        </div>
-                                        <div class="login-link">
-                                            <p>Already have an account? <a href="index.html">Login</a></p>
                                         </div>
                                     </form>
                                 </div>
