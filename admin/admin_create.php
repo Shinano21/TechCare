@@ -277,7 +277,7 @@ header('Expires: 0');
                 <div class="text-center mb-5">
                     <img src="../images/LOGO.svg" alt="TechCare" width="100">
                 </div>
-                <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                <a href="Dashboard.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
                 <a href="resident.php"><i class="bi bi-people"></i>Residents</a>
 
                 <!-- Services Dropdown -->
