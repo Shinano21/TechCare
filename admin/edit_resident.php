@@ -133,10 +133,10 @@
             <label for="momLname">Mother's Last Name</label>
             <input type="text" id="momLname" name="momLname" class="form-control" value="<?php echo $resident['mom_lname']; ?>" />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="age">Age</label>
             <input type="text" id="age" name="age" class="form-control" value="<?php echo $resident['age']; ?>" />
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="pob">Place of Birth</label>
             <input type="text" id="pob" name="pob" class="form-control" value="<?php echo $resident['place_of_birth']; ?>" />
