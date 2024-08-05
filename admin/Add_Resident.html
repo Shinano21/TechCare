@@ -42,7 +42,7 @@
         }
       .main-content {
         margin-left: 250px;
-        padding: 20px;
+        padding: 30px;
       }
       .user-details p {
         margin: 0;
@@ -75,6 +75,13 @@
         max-height: 100%;
         max-width: 100%;
     }
+    @media (max-width: 992px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
     </style>
 
 <script>
@@ -162,7 +169,7 @@
           <!--Main Content-->
           <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content">
 
-      <section class="add-resident" style="background-color: white; padding: 10px;">
+      <section class="add-resident" style="background-color: white; padding: 20px;">
         <h1>Add Resident</h1>
         <form
           action="add_resident.php"
@@ -477,7 +484,13 @@
             </div>
       
           </div>
-          <button type="submit" class="btn btn-primary">Add Resident</button>
+          <div class="row">
+            <div class="col text-end">
+                <button type="submit" class="btn btn-primary">Add Resident</button>
+            </div>
+        </div>
+        
+        
         </form>
         <div class="map mt-3">
           <!-- Embed map here -->
