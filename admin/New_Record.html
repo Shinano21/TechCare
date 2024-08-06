@@ -4,173 +4,241 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Record</title>
-    <link rel="stylesheet" href="css/NRstyles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(135deg, #C2FFD8 10%, #465EFB 100%);
+            background-attachment: fixed;
+        }
+        .main-content {
+        margin-left: 250px;
+        padding: 30px;
+      }
+     .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .sidebar a, .offcanvas-body a  {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+        }
+        .sidebar a i,  .offcanvas-body a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .sidebar a:hover,  .offcanvas-body a:hover {
+            background-color: #7AB2B2;
+        }
+        @media (max-width: 992px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+   </style>
   </head>
   <body>
-    <div class="container">
-      <div class="sidebar">
-        <div class="logo">
-          <img src="logo.png" alt="TechCare+ Logo" />
-        </div>
-        <nav>
-          <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Residents</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Visualization</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Website</a></li>
-            <li><a href="#">ID System</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="main-content">
-        <h1>New Record</h1>
-        <form>
-          <fieldset>
-            <legend>Personal Information</legend>
-            <div class="form-group">
-              <label for="registration-date">Date of Registration*</label>
-              <input
-                type="date"
-                id="registration-date"
-                name="registration-date"
-                required
-              />
+    <div class="container-fluid">
+      <div class="row">
+          <!-- Sidebar for Larger Screens -->
+          <div class="col-lg d-none d-lg-block sidebar">
+              <div class="text-center mb-5">
+                  <img src="../images/LOGO.svg" alt="TechCare" width="100">
+              </div>
+              <a href="Dashboard.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
+              <a href="resident.php"><i class="bi bi-people"></i>Residents</a>
+
+              <!-- Services Dropdown -->
+              <div class="dropdown">
+                  <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-wrench"></i>Services
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                      <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                      <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                      <li><a class="dropdown-item" href="#">More</a></li>
+                  </ul>
+              </div>
+
+              <a href="#"><i class="bi bi-file-earmark-medical"></i>Medical History</a>
+              <a href="#"><i class="bi bi-calendar"></i>Appointments</a>
+              <a href="#"><i class="bi bi-clipboard-data"></i>Reports</a>
+              <a href="#"><i class="bi bi-clock-history"></i>Reminders</a>
+              <a href="#"><i class="bi bi-gear"></i>Settings</a>
+              <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+          </div>
+
+          <!-- Offcanvas Sidebar for Smaller Screens -->
+          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+              <div class="offcanvas-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                  <div class="text-center mb-5">
+                      <img src="../images/LOGO.svg" alt="TechCare" width="100">
+                  </div>
+                  <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                  <a href="Resident.php"><i class="bi bi-people"></i>Residents</a>
+
+                  <!-- Services Dropdown -->
+                  <div class="dropdown">
+                      <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-wrench"></i>Services
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                          <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                          <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                          <li><a class="dropdown-item" href="#">More</a></li>
+                      </ul>
+                  </div>
+
+                  <a href="#"><i class="bi bi-file-earmark-medical"></i>Medical History</a>
+                  <a href="#"><i class="bi bi-calendar"></i>Appointments</a>
+                  <a href="#"><i class="bi bi-clipboard-data"></i>Reports</a>
+                  <a href="#"><i class="bi bi-clock-history"></i>Reminders</a>
+                  <a href="#"><i class="bi bi-gear"></i>Settings</a>
+                  <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+              </div>
+          </div>
+
+          <!-- Sidebar Toggle Button for Smaller Screens -->
+          <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+              <i class="bi bi-list"></i>
+          </button>
+
+          <div class="container mt-4 mt-lg-0">
+            <div class="row">
+            <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content">
+                <h1>New Record</h1>
+                <form>
+                  <fieldset class="p-4 bg-white rounded">
+                    <legend>Personal Information</legend>
+                    <div class="mb-3">
+                      <label for="registration-date" class="form-label">Date of Registration*</label>
+                      <input type="date" class="form-control" id="registration-date" name="registration-date" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="birth-date" class="form-label">Date of Birth</label>
+                      <input type="date" class="form-control" id="birth-date" name="birth-date">
+                    </div>
+                    <div class="mb-3">
+                      <label for="serial-number" class="form-label">Serial Number</label>
+                      <input type="text" class="form-control" id="serial-number" name="serial-number">
+                    </div>
+                    <div class="mb-3">
+                      <label for="se-status" class="form-label">SE Status*</label>
+                      <input type="text" class="form-control" id="se-status" name="se-status" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="sex" class="form-label">Sex</label>
+                      <input type="text" class="form-control" id="sex" name="sex">
+                    </div>
+                    <div class="mb-3">
+                      <label for="child-first-name" class="form-label">Complete Name of Child - First Name*</label>
+                      <input type="text" class="form-control" id="child-first-name" name="child-first-name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="child-middle-name" class="form-label">Middle Name</label>
+                      <input type="text" class="form-control" id="child-middle-name" name="child-middle-name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="child-last-name" class="form-label">Last Name*</label>
+                      <input type="text" class="form-control" id="child-last-name" name="child-last-name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="child-suffix" class="form-label">Suffix</label>
+                      <input type="text" class="form-control" id="child-suffix" name="child-suffix">
+                    </div>
+                    <div class="mb-3">
+                      <label for="mother-first-name" class="form-label">Complete Name of Mother - First Name*</label>
+                      <input type="text" class="form-control" id="mother-first-name" name="mother-first-name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="mother-middle-name" class="form-label">Middle Name</label>
+                      <input type="text" class="form-control" id="mother-middle-name" name="mother-middle-name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="mother-last-name" class="form-label">Last Name*</label>
+                      <input type="text" class="form-control" id="mother-last-name" name="mother-last-name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="mother-suffix" class="form-label">Suffix</label>
+                      <input type="text" class="form-control" id="mother-suffix" name="mother-suffix">
+                    </div>
+                    <div class="mb-3">
+                      <label for="zone" class="form-label">Complete Address - Zone*</label>
+                      <input type="text" class="form-control" id="zone" name="zone" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="barangay" class="form-label">Barangay*</label>
+                      <input type="text" class="form-control" id="barangay" name="barangay" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="city" class="form-label">City/Municipality*</label>
+                      <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="province" class="form-label">Province*</label>
+                      <input type="text" class="form-control" id="province" name="province" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="father-first-name" class="form-label">Complete Name of Father - First Name*</label>
+                      <input type="text" class="form-control" id="father-first-name" name="father-first-name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="father-middle-name" class="form-label">Middle Name</label>
+                      <input type="text" class="form-control" id="father-middle-name" name="father-middle-name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="father-last-name" class="form-label">Last Name*</label>
+                      <input type="text" class="form-control" id="father-last-name" name="father-last-name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="father-suffix" class="form-label">Suffix</label>
+                      <input type="text" class="form-control" id="father-suffix" name="father-suffix">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                  </fieldset>
+                </form>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="birth-date">Date of Birth</label>
-              <input type="date" id="birth-date" name="birth-date" />
-            </div>
-            <div class="form-group">
-              <label for="serial-number">Serial Number</label>
-              <input type="text" id="serial-number" name="serial-number" />
-            </div>
-            <div class="form-group">
-              <label for="se-status">SE Status*</label>
-              <input type="text" id="se-status" name="se-status" required />
-            </div>
-            <div class="form-group">
-              <label for="sex">Sex</label>
-              <input type="text" id="sex" name="sex" />
-            </div>
-            <div class="form-group">
-              <label for="child-first-name"
-                >Complete Name of Child - First Name*</label
-              >
-              <input
-                type="text"
-                id="child-first-name"
-                name="child-first-name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="child-middle-name">Middle Name</label>
-              <input
-                type="text"
-                id="child-middle-name"
-                name="child-middle-name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="child-last-name">Last Name*</label>
-              <input
-                type="text"
-                id="child-last-name"
-                name="child-last-name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="child-suffix">Suffix</label>
-              <input type="text" id="child-suffix" name="child-suffix" />
-            </div>
-            <div class="form-group">
-              <label for="mother-first-name"
-                >Complete Name of Mother - First Name*</label
-              >
-              <input
-                type="text"
-                id="mother-first-name"
-                name="mother-first-name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="mother-middle-name">Middle Name</label>
-              <input
-                type="text"
-                id="mother-middle-name"
-                name="mother-middle-name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="mother-last-name">Last Name*</label>
-              <input
-                type="text"
-                id="mother-last-name"
-                name="mother-last-name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="mother-suffix">Suffix</label>
-              <input type="text" id="mother-suffix" name="mother-suffix" />
-            </div>
-            <div class="form-group">
-              <label for="zone">Complete Address - Zone*</label>
-              <input type="text" id="zone" name="zone" required />
-            </div>
-            <div class="form-group">
-              <label for="barangay">Barangay*</label>
-              <input type="text" id="barangay" name="barangay" required />
-            </div>
-            <div class="form-group">
-              <label for="city">City/Municipality*</label>
-              <input type="text" id="city" name="city" required />
-            </div>
-            <div class="form-group">
-              <label for="province">Province*</label>
-              <input type="text" id="province" name="province" required />
-            </div>
-            <div class="form-group">
-              <label for="father-first-name"
-                >Complete Name of Father - First Name*</label
-              >
-              <input
-                type="text"
-                id="father-first-name"
-                name="father-first-name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="father-middle-name">Middle Name</label>
-              <input
-                type="text"
-                id="father-middle-name"
-                name="father-middle-name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="father-last-name">Last Name*</label>
-              <input
-                type="text"
-                id="father-last-name"
-                name="father-last-name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="father-suffix">Suffix</label>
-              <input type="text" id="father-suffix" name="father-suffix" />
-            </div>
-          </fieldset>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+          </div>
+          
     </div>
+    <!-- Logout Confirmation Modal -->
+<div id="logoutModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050; display: flex; align-items: center; justify-content: center;">
+  <div class="modal-content" style="padding: 20px; border: 2px solid #7AB2B2; border-radius: 10px; text-align: center; background-color: #f8f9fa; max-width: 400px; width: 100%;">
+      <h3 style="margin-bottom: 15px;">Confirm Logout</h3>
+      <p>Are you sure you want to log out?</p>
+      <button onclick="window.location.href='../logout.php'" style="background-color: #4D869C; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Yes</button>
+      <button onclick="hideLogoutModal()" style="background-color: #CDE8E5; color: black; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top:10px;">No</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      hideLogoutModal();
+  });
+
+  function showLogoutModal() {
+      document.getElementById('logoutModal').style.display = 'flex';
+  }
+
+  function hideLogoutModal() {
+      document.getElementById('logoutModal').style.display = 'none';
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
   </body>
 </html>

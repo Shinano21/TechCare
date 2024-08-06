@@ -341,7 +341,7 @@ header('Expires: 0');
             <!-- Main Content -->
             <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content">
                 <div class="card-container">
-                  
+
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title"></h2>
