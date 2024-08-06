@@ -27,28 +27,28 @@ header('Expires: 0');
         background-image: linear-gradient( 135deg, #C2FFD8 10%, #465EFB 100%);
       }
       .sidebar {
-        height: 100vh;
-        width: 250px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #f8f9fa;
-        padding-top: 20px;
-      }
-      .sidebar a {
-        padding: 10px 15px;
-        text-decoration: none;
-        font-size: 18px;
-        color: #333;
-        display: block;
-      }
-      .sidebar a i {
-        margin-right: 10px;
-        font-size: 20px;
-      }
-      .sidebar a:hover {
-        background-color: #7AB2B2;
-      }
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .sidebar a, .offcanvas-body a  {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+        }
+        .sidebar a i,  .offcanvas-body a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .sidebar a:hover,  .offcanvas-body a:hover {
+            background-color: #7AB2B2;
+        }
       .main-content {
         margin-left: 250px;
       }
@@ -62,36 +62,83 @@ header('Expires: 0');
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin: 15px;
       }
+      @media (max-width: 992px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
     </style>
   </head>
   <body>
-    <div class="sidebar text-center">
-      <div class="text-center mb-5">
-        <img src="images/LOGO.svg" alt="TechCare" width="100">
-      </div>
-      <a href="Dashboard.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
-      <a href="Resident.php"><i class="bi bi-people"></i>Residents</a>
-      
-      <!-- Services Dropdown -->
-      <div class="dropdown">
-        <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-wrench"></i>Services
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-          <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
-          <li><a class="dropdown-item" href="#">Nutrition</a></li>
-          <li><a class="dropdown-item" href="#">More</a></li>
-        </ul>
-      </div>
-      
-      <a href="#"><i class="bi bi-bar-chart-line"></i>Visualization</a>
-      <a href="#"><i class="bi bi-file-earmark-text"></i>Reports</a>
-      <a href="#"><i class="bi bi-globe"></i>Website</a>
-      <a href="#"><i class="bi bi-person-badge"></i>ID System</a>
-      <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
-    </div>
+  <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar for Larger Screens -->
+            <div class="col-lg d-none d-lg-block sidebar">
+                <div class="text-center mb-5">
+                    <img src="../images/LOGO.svg" alt="TechCare" width="100">
+                </div>
+                <a href="Dashboard.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                <a href="resident.php"><i class="bi bi-people"></i>Residents</a>
 
-    <div class="main-content">
+                <!-- Services Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-wrench"></i>Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                        <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                        <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                        <li><a class="dropdown-item" href="#">More</a></li>
+                    </ul>
+                </div>
+
+                <a href="#"><i class="bi bi-bar-chart-line"></i>Visualization</a>
+                <a href="#"><i class="bi bi-file-earmark-text"></i>Reports</a>
+                <a href="#"><i class="bi bi-globe"></i>Website</a>
+                <a href="#"><i class="bi bi-person-badge"></i>ID System</a>
+                <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+            </div>
+
+            <!-- Offcanvas Sidebar for Smaller Screens -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="text-center mb-5">
+                        <img src="../images/LOGO.svg" alt="TechCare" width="100">
+                    </div>
+                    <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                    <a href="Resident.php"><i class="bi bi-people"></i>Residents</a>
+
+                    <!-- Services Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-wrench"></i>Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                            <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                            <li><a class="dropdown-item" href="#">More</a></li>
+                        </ul>
+                    </div>
+
+                    <a href="#"><i class="bi bi-bar-chart-line"></i>Visualization</a>
+                    <a href="#"><i class="bi bi-file-earmark-text"></i>Reports</a>
+                    <a href="#"><i class="bi bi-globe"></i>Website</a>
+                    <a href="#"><i class="bi bi-person-badge"></i>ID System</a>
+                    <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Toggle Button for Smaller Screens -->
+            <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
+      <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content">
       <nav class="navbar navbar-light bg-light border-bottom border-dark rounded-bottom">
         <div class="container-fluid">
           <span class="navbar-brand mb-0 h1 bi bi-geo-alt-fill">Barangay Estanza</span>
@@ -269,6 +316,7 @@ header('Expires: 0');
       }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
   </body>
 </html>
