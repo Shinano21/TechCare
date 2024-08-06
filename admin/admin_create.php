@@ -21,9 +21,11 @@ header('Expires: 0');
     <title>TechCare Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    
     <style>
         body {
-            font-family: Arial, sans-serif;
+        font-family: 'Poppins', sans-serif;
             background-image: linear-gradient(135deg, #C2FFD8 10%, #465EFB 100%);
             background-attachment: fixed;
         }
@@ -292,11 +294,10 @@ header('Expires: 0');
                     </ul>
                 </div>
 
-                <a href="#"><i class="bi bi-file-earmark-medical"></i>Medical History</a>
-                <a href="#"><i class="bi bi-calendar"></i>Appointments</a>
-                <a href="#"><i class="bi bi-clipboard-data"></i>Reports</a>
-                <a href="#"><i class="bi bi-clock-history"></i>Reminders</a>
-                <a href="#"><i class="bi bi-gear"></i>Settings</a>
+                <a href="#"><i class="bi bi-bar-chart-line"></i>Visualization</a>
+                <a href="#"><i class="bi bi-file-earmark-text"></i>Reports</a>
+                <a href="#"><i class="bi bi-globe"></i>Website</a>
+                <a href="#"><i class="bi bi-person-badge"></i>ID System</a>
                 <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
             </div>
 
@@ -324,11 +325,10 @@ header('Expires: 0');
                         </ul>
                     </div>
 
-                    <a href="#"><i class="bi bi-file-earmark-medical"></i>Medical History</a>
-                    <a href="#"><i class="bi bi-calendar"></i>Appointments</a>
-                    <a href="#"><i class="bi bi-clipboard-data"></i>Reports</a>
-                    <a href="#"><i class="bi bi-clock-history"></i>Reminders</a>
-                    <a href="#"><i class="bi bi-gear"></i>Settings</a>
+                    <a href="#"><i class="bi bi-bar-chart-line"></i>Visualization</a>
+                    <a href="#"><i class="bi bi-file-earmark-text"></i>Reports</a>
+                    <a href="#"><i class="bi bi-globe"></i>Website</a>
+                    <a href="#"><i class="bi bi-person-badge"></i>ID System</a>
                     <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
                 </div>
             </div>
