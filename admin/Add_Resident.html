@@ -236,18 +236,18 @@
             </div>
             <div class="col-md-4 form-group">
               <label for="sex">Sex</label>
-              <select id="sex" name="sex" class="form-control border border-secondary" required>
+              <select id="sex" name="sex" class="form-control" required>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
             </div>
             <div class="col-md-4 form-group">
-              <label for="dob">Date of Birth</label>
+              <label for="dateOfBirth">Date of Birth</label>
               <input
                 type="date"
                 id="dob"
                 name="dob"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               />
             </div>
@@ -259,7 +259,7 @@
                 type="number"
                 id="age"
                 name="age"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               />
             </div>
@@ -269,7 +269,7 @@
                 type="text"
                 id="pob"
                 name="pob"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               />
             </div>
@@ -282,8 +282,6 @@
                 class="form-control border border-secondary"
               />
             </div>
-          </div>
-          <div class="row">
             <div class="col-md-4 form-group">
               <label for="citizenship">Citizenship</label>
               <input
@@ -294,22 +292,24 @@
                 required
               />
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-4 form-group">
-              <label for="streetName">Street Name</label>
+              <label for="street">Street</label>
               <input
                 type="text"
                 id="streetName"
                 name="streetName"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               />
             </div>
             <div class="col-md-4 form-group">
               <label for="zone">Zone</label>
-              <input type="text" id="zone" name="zone" class="form-control border border-secondary" />
+              <input type="text" id="zone" name="zone" class="form-control" />
             </div>
           </div>
-          <div class="row mb-5">
+          <div class="row">
             <div class="col-md-4 form-group">
               <label for="barangay">Barangay</label>
               <input
@@ -320,13 +320,15 @@
                 required
               />
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-4 form-group">
-              <label for="cityMunicipality">City/Municipality</label>
+              <label for="municipal">Municipal or City</label>
               <input
                 type="text"
                 id="cityMunicipality"
                 name="cityMunicipality"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               />
             </div>
@@ -336,27 +338,27 @@
                 type="text"
                 id="province"
                 name="province"
-                class="form-control border border-secondary"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-4 form-group">
+              <label for="zipcode">Zipcode</label>
+              <input
+                type="text"
+                id="zipCode"
+                name="zipCode"
+                class="form-control"
               />
             </div>
           </div>
           <div class="row">
             <div class="col-md-4 form-group">
-              <label for="zipCode">Zip Code</label>
-              <input
-                type="text"
-                id="zipCode"
-                name="zipCode"
-                class="form-control border border-secondary"
-              />
-            </div>
-            <div class="col-md-4 form-group">
-              <label for="contactNo">Contact No.</label>
+              <label for="contactNumber">Contact Number</label>
               <input
                 type="text"
                 id="contactNo"
                 name="contactNo"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               />
             </div>
@@ -366,7 +368,7 @@
     type="text"
     id="educationalAttainment"
     name="educationalAttainment"
-    class="form-control border border-secondary"
+    class="form-control"
     list="educationalAttainmentOptions"
   />
   <datalist id="educationalAttainmentOptions">
@@ -378,7 +380,7 @@
 </div>
 
           </div>
-          <div class="row mb-5">
+          <div class="row">
             <div class="col-md-4 form-group">
               <label for="occupation">Occupation</label>
               <input
@@ -388,6 +390,8 @@
                 class="form-control border border-secondary"
               />
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-4 form-group">
               <label for="civilStatus">Civil Status</label>
               <select
@@ -396,19 +400,34 @@
                 class="form-control border border-secondary"
                 required
               >
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-                <option value="widowed">Widowed</option>
-                <option value="divorced">Divorced</option>
+                <option value="">Select</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Widowed">Widowed</option>
+                <option value="Divorced">Divorced</option>
               </select>
             </div>
+          <div class="col-md-4 form-group">
+              <label for="laborStatus">Labor Status</label>
+              <select id="laborStatus" name="laborStatus" class="form-control">
+                <option value="">Select Labor Status</option>
+                <option value="Employed">Employed</option>
+                <option value="Unemployed">Unemployed</option>
+                <option value="Self-Employed">Self-Employed</option>
+                <option value="Student">Student</option>
+                <option value="Retired">Retired</option>
+                <option value="Homemaker">Homemaker</option>
+                <option value="Unable to work">Unable to work</option>
+              </select>
+            </div>
+
             <div class="col-md-4 form-group">
-              <label for="laborForceStatus">Labor Force Status</label>
+              <label for="voterStatus">Voter Status</label>
               <input
                 type="text"
                 id="laborForceStatus"
                 name="laborForceStatus"
-                class="form-control border border-secondary"
+                class="form-control"
               />
             </div>
           </div>
@@ -418,7 +437,7 @@
               <select
                 id="voterStatus"
                 name="voterStatus"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               >
                 <option value="registered">Registered</option>
@@ -431,19 +450,20 @@
                 type="text"
                 id="pwdStatus"
                 name="pwdStatus"
-                class="form-control border border-secondary"
+                class="form-control"
               />
             </div>
             <div class="col-md-4 form-group">
-              <label for="fourPsBeneficiary">4Ps Beneficiary</label>
+              <label for="covidVaccineStatus">Covid Vaccine Status</label>
               <input
                 type="text"
                 id="fourPsBeneficiary"
                 name="fourPsBeneficiary"
-                class="form-control border border-secondary"
+                class="form-control"
               />
             </div>
           </div>
+          
           <div class="row">
             <div class="col-md-4 form-group">
               <label for="longitude">Longitude</label>
@@ -469,7 +489,7 @@
                 type="text"
                 id="covidVaccineStatus"
                 name="covidVaccineStatus"
-                class="form-control border border-secondary"
+                class="form-control"
               />
             </div>
           </div>
@@ -483,59 +503,58 @@
                 <option value="philhealth">PhilHealth</option>
               </select>
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-4 form-group">
-              <label for="id-number">ID Number</label>
+              <label for="idNumber">ID Number</label>
+              <input
+                type="text"
+                id="idNumber"
+                name="idNumber"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-4 form-group">
+              <label for="momFirstName">Mother's First Name</label>
+              <input
+                type="text"
+                id="momFirstName"
+                name="momFirstName"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-4 form-group">
+              <label for="momLastName">Mother's Last Name</label>
               <input
                 type="text"
                 id="id-number"
                 name="id-number"
-                class="form-control border border-secondary"
+                class="form-control"
                 required
               />
             </div>
-      
           </div>
           <div class="row">
             <div class="col text-end">
-                <button type="submit" class="btn btn-primary" style="background-color:#4D869C;">Add Resident</button>
+                <button type="submit" class="btn btn-primary">Add Resident</button>
             </div>
-        </div>
-        
-        
+          </div>
+          <button type="submit" class="btn btn-primary">Add Resident</button>
         </form>
-        <div class="map mt-3">
-          <!-- Embed map here -->
-          <img
-            src="map-placeholder.png"
-            alt="Map Placeholder"
-            class="img-fluid"
-          />
-        </div>
       </section>
-      <!-- Logout Confirmation Modal -->
-<div id="logoutModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050; display: flex; align-items: center; justify-content: center;">
-  <div class="modal-content" style="padding: 20px; border: 2px solid #7AB2B2; border-radius: 10px; text-align: center; background-color: #f8f9fa; max-width: 400px; width: 100%;">
-      <h3 style="margin-bottom: 15px;">Confirm Logout</h3>
-      <p>Are you sure you want to log out?</p>
-      <button onclick="window.location.href='../logout.php'" style="background-color: #4D869C; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Yes</button>
-      <button onclick="hideLogoutModal()" style="background-color: #CDE8E5; color: black; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top:10px;">No</button>
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      hideLogoutModal();
-  });
-
-  function showLogoutModal() {
-      document.getElementById('logoutModal').style.display = 'flex';
-  }
-
-  function hideLogoutModal() {
-      document.getElementById('logoutModal').style.display = 'none';
-  }
-</script>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz4fnFO9gybBogGzU6kI8sg6flnKD1zLcf6BujGkfyXA46TBlQBYb6bAx+" crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-qK9K/QS5TXk+DDERks7KT/5vT6v+4j6flpfa2n7rM5JSFCsfjOMW6YyZfP5viJbt"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
   </body>
 </html>

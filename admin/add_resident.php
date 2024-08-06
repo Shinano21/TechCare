@@ -1,45 +1,52 @@
 <?php
 include 'db.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve form data
-    $first_name = $_POST['firstName'];
-    $middle_name = $_POST['middleName'];
-    $last_name = $_POST['lastName'];
-    $suffix_name = $_POST['suffix'];
-    $gender = $_POST['sex'];
-    $date_of_birth = $_POST['dob'];
-    $place_of_birth = $_POST['pob'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstName = $_POST['firstName'];
+    $middleName = $_POST['middleName'];
+    $lastName = $_POST['lastName'];
+    $suffix = $_POST['suffix'];
+    $sex = $_POST['sex'];
+    $dateOfBirth = $_POST['dateOfBirth'];
+    $placeOfBirth = $_POST['placeOfBirth'];
     $religion = $_POST['religion'];
     $citizenship = $_POST['citizenship'];
-    $street = $_POST['streetName'];
+    $street = $_POST['street'];
     $zone = $_POST['zone'];
     $barangay = $_POST['barangay'];
-    $municipal = $_POST['cityMunicipality'];
+    $municipal = $_POST['municipal'];
     $province = $_POST['province'];
-    $zipcode = $_POST['zipCode'];
-    $contact_number = $_POST['contactNo'];
+    $zipcode = $_POST['zipcode'];
+    $contactNumber = $_POST['contactNumber'];
     $education = $_POST['educationalAttainment'];
     $occupation = $_POST['occupation'];
-    $civil_status = $_POST['civilStatus'];
-    $labor_status = $_POST['laborForceStatus'];
-    $voter_status = $_POST['voterStatus'];
-    $pwd_status = $_POST['pwdStatus'];
-    $four_p = $_POST['fourPsBeneficiary'];
+    $civilStatus = $_POST['civilStatus'];
+    $laborStatus = $_POST['laborStatus'];
+    $voterStatus = $_POST['voterStatus'];
+    $pwdStatus = $_POST['pwdStatus'];
+    $fourP = $_POST['fourP'];
+    $covidVaccineStatus = $_POST['covidVaccineStatus'];
     $longitude = $_POST['longitude'];
     $latitude = $_POST['latitude'];
-    $profile_pic = ""; // handle image upload separately
-    $id_type = $_POST['id-type'];
-    $id_number = $_POST['id-number'];
-    $mom_name = $_POST['momName'];
-    $mom_lname = $_POST['momLname'];
-    $qr_code = ""; // generate QR code separately
+    $idType = $_POST['id-type'];
+    $idNumber = $_POST['idNumber'];
+    $momFirstName = $_POST['momFirstName'];
+    $momLastName = $_POST['momLastName'];
+    $qrCode = $_POST['qrCode'];
 
-    $sql = "INSERT INTO residents (first_name, middle_name, last_name, suffix_name, gender, date_of_birth, place_of_birth, religion, citizenship, street, zone, barangay, municipal, province, zipcode, contact_number, education, occupation, civil_status, labor_status, voter_status, pwd_status, four_p, longitude, latitude, profile_pic, id_type, id_number, mom_name, mom_lname, qr_code)
-    VALUES ('$first_name', '$middle_name', '$last_name', '$suffix_name', '$gender', '$date_of_birth', '$place_of_birth', '$religion', '$citizenship', '$street', '$zone', '$barangay', '$municipal', '$province', '$zipcode', '$contact_number', '$education', '$occupation', '$civil_status', '$labor_status', '$voter_status', '$pwd_status', '$four_p', '$longitude', '$latitude', '$profile_pic', '$id_type', '$id_number', '$mom_name', '$mom_lname', '$qr_code')";
+    $profilePic = null;
+    if (!empty($_FILES['image']['tmp_name'])) {
+        $profilePic = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+    }
+
+    $sql = "INSERT INTO residents (first_name, middle_name, last_name, suffix_name, gender, date_of_birth, place_of_birth, religion, citizenship, street, zone, barangay, municipal, province, zipcode, contact_number, education, occupation, civil_status, labor_status, voter_status, pwd_status, four_p, status, longitude, latitude, profile_pic, id_type, id_number, mom_name, mom_lname, qr_code)
+            VALUES ('$firstName', '$middleName', '$lastName', '$suffix', '$sex', '$dateOfBirth', '$placeOfBirth', '$religion', '$citizenship', '$street', '$zone', '$barangay', '$municipal', '$province', '$zipcode', '$contactNumber', '$education', '$occupation', '$civilStatus', '$laborStatus', '$voterStatus', '$pwdStatus', '$fourP', '$covidVaccineStatus', '$longitude', '$latitude', '$profilePic', '$idType', '$idNumber', '$momFirstName', '$momLastName', '$qrCode')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New resident added successfully";
+        echo "<script>
+                alert('New resident added successfully');
+                window.location.href = 'resident.php';
+              </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
