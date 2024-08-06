@@ -12,9 +12,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: 'Poppins', sans-serif;
         background-image: linear-gradient(135deg, #c2ffd8 10%, #465efb 100%);
       }
       .sidebar {
@@ -176,14 +177,14 @@
           method="POST"
           enctype="multipart/form-data"
         >
-        <div class="row align-items-end mb-3">
+        <div class="row align-items-end mb-5">
           <div class="col-md-3 form-group">
               <label for="firstName">First Name</label>
               <input
                   type="text"
                   id="firstName"
                   name="firstName"
-                  class="form-control"
+                  class="form-control border border-secondary"
                   required
               />
           </div>
@@ -193,7 +194,7 @@
                   type="text"
                   id="middleName"
                   name="middleName"
-                  class="form-control"
+                  class="form-control border border-secondary"
               />
           </div>
           <div class="col-md-3 form-group">
@@ -202,7 +203,7 @@
                   type="text"
                   id="lastName"
                   name="lastName"
-                  class="form-control"
+                  class="form-control border border-secondary"
                   required
               />
           </div>
@@ -228,12 +229,12 @@
                 type="text"
                 id="suffix"
                 name="suffix"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
             <div class="col-md-4 form-group">
               <label for="sex">Sex</label>
-              <select id="sex" name="sex" class="form-control" required>
+              <select id="sex" name="sex" class="form-control border border-secondary" required>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
@@ -244,19 +245,19 @@
                 type="date"
                 id="dob"
                 name="dob"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-5">
             <div class="col-md-4 form-group">
               <label for="age">Age</label>
               <input
                 type="number"
                 id="age"
                 name="age"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
@@ -266,7 +267,7 @@
                 type="text"
                 id="pob"
                 name="pob"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
@@ -276,7 +277,7 @@
                 type="text"
                 id="religion"
                 name="religion"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
           </div>
@@ -287,7 +288,7 @@
                 type="text"
                 id="citizenship"
                 name="citizenship"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
@@ -297,23 +298,23 @@
                 type="text"
                 id="streetName"
                 name="streetName"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
             <div class="col-md-4 form-group">
               <label for="zone">Zone</label>
-              <input type="text" id="zone" name="zone" class="form-control" />
+              <input type="text" id="zone" name="zone" class="form-control border border-secondary" />
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-5">
             <div class="col-md-4 form-group">
               <label for="barangay">Barangay</label>
               <input
                 type="text"
                 id="barangay"
                 name="barangay"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
@@ -323,7 +324,7 @@
                 type="text"
                 id="cityMunicipality"
                 name="cityMunicipality"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
@@ -333,7 +334,7 @@
                 type="text"
                 id="province"
                 name="province"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
           </div>
@@ -344,7 +345,7 @@
                 type="text"
                 id="zipCode"
                 name="zipCode"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
             <div class="col-md-4 form-group">
@@ -353,7 +354,7 @@
                 type="text"
                 id="contactNo"
                 name="contactNo"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
@@ -363,7 +364,7 @@
     type="text"
     id="educationalAttainment"
     name="educationalAttainment"
-    class="form-control"
+    class="form-control border border-secondary"
     list="educationalAttainmentOptions"
   />
   <datalist id="educationalAttainmentOptions">
@@ -375,14 +376,14 @@
 </div>
 
           </div>
-          <div class="row">
+          <div class="row mb-5">
             <div class="col-md-4 form-group">
               <label for="occupation">Occupation</label>
               <input
                 type="text"
                 id="occupation"
                 name="occupation"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
             <div class="col-md-4 form-group">
@@ -390,7 +391,7 @@
               <select
                 id="civilStatus"
                 name="civilStatus"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               >
                 <option value="single">Single</option>
@@ -405,7 +406,7 @@
                 type="text"
                 id="laborForceStatus"
                 name="laborForceStatus"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
           </div>
@@ -415,7 +416,7 @@
               <select
                 id="voterStatus"
                 name="voterStatus"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               >
                 <option value="registered">Registered</option>
@@ -428,7 +429,7 @@
                 type="text"
                 id="pwdStatus"
                 name="pwdStatus"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
             <div class="col-md-4 form-group">
@@ -437,7 +438,7 @@
                 type="text"
                 id="fourPsBeneficiary"
                 name="fourPsBeneficiary"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
           </div>
@@ -448,7 +449,7 @@
                 type="text"
                 id="longitude"
                 name="longitude"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
             <div class="col-md-4 form-group">
@@ -457,7 +458,7 @@
                 type="text"
                 id="latitude"
                 name="latitude"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
             <div class="col-md-4 form-group">
@@ -466,14 +467,14 @@
                 type="text"
                 id="covidVaccineStatus"
                 name="covidVaccineStatus"
-                class="form-control"
+                class="form-control border border-secondary"
               />
             </div>
           </div>
           <div class="row">
             <div class="col-md-4 form-group">
               <label for="id-type">ID Type</label>
-              <select id="id-type" name="id-type" class="form-control" required>
+              <select id="id-type" name="id-type" class="form-control border border-secondary" required>
                 <option value="passport">Passport</option>
                 <option value="driver-license">Driver's License</option>
                 <option value="national-id">National ID</option>
@@ -486,7 +487,7 @@
                 type="text"
                 id="id-number"
                 name="id-number"
-                class="form-control"
+                class="form-control border border-secondary"
                 required
               />
             </div>
