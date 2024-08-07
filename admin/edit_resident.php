@@ -175,67 +175,102 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 form-group">
-                <label for="civilStatus">Civil Status</label>
-                <input type="text" id="civilStatus" name="civil_status" class="form-control" value="<?php echo htmlspecialchars($resident['civil_status']); ?>" />
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="laborStatus">Labor Status</label>
-                <input type="text" id="laborStatus" name="labor_status" class="form-control" value="<?php echo htmlspecialchars($resident['labor_status']); ?>" />
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="voterStatus">Voter Status</label>
-                <input type="text" id="voterStatus" name="voter_status" class="form-control" value="<?php echo htmlspecialchars($resident['voter_status']); ?>" />
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="pwdStatus">PWD Status</label>
-                <input type="text" id="pwdStatus" name="pwd_status" class="form-control" value="<?php echo htmlspecialchars($resident['pwd_status']); ?>" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 form-group">
-                <label for="fourP">4P's</label>
-                <input type="text" id="fourP" name="four_p" class="form-control" value="<?php echo htmlspecialchars($resident['four_p']); ?>" />
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="status">Status</label>
-                <input type="text" id="status" name="status" class="form-control" value="<?php echo htmlspecialchars($resident['status']); ?>" />
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="longitude">Longitude</label>
-                <input type="text" id="longitude" name="longitude" class="form-control" value="<?php echo htmlspecialchars($resident['longitude']); ?>" />
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="latitude">Latitude</label>
-                <input type="text" id="latitude" name="latitude" class="form-control" value="<?php echo htmlspecialchars($resident['latitude']); ?>" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 form-group">
-                <label for="profilePic">Profile Picture</label>
-                <input type="file" id="profilePic" name="image" class="form-control" />
-                <?php if ($resident['profile_pic']) { ?>
-                    <img src="<?php echo htmlspecialchars($resident['profile_pic']); ?>" alt="Profile Picture" width="100">
-                <?php } ?>
-            </div>
-            <div class="col-md-4 form-group">
-                <label for="idType">ID Type</label>
-                <input type="text" id="idType" name="id_type" class="form-control" value="<?php echo htmlspecialchars($resident['id_type']); ?>" />
-            </div>
-            <div class="col-md-4 form-group">
-                <label for="idNumber">ID Number</label>
-                <input type="text" id="idNumber" name="id_number" class="form-control" value="<?php echo htmlspecialchars($resident['id_number']); ?>" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 form-group">
-                <label for="momFirstName">Mother's First Name</label>
-                <input type="text" id="momFirstName" name="mom_name" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['mom_name']); ?>" />
-            </div>
-            <div class="col-md-3 form-group">
-                <label for="momLastName">Mother's Last Name</label>
-                <input type="text" id="momLastName" name="mom_lname" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['mom_lname']); ?>" />
-            </div>
+         <div class="row">
+    <div class="col-md-4 form-group">
+        <label for="civilStatus">Civil Status</label>
+        <select id="civilStatus" name="civil_status" class="form-control border border-secondary" required>
+            <option value="" selected disabled hidden></option>
+            <option value="Single" <?php if ($resident['civil_status'] == 'Single') echo 'selected'; ?>>Single</option>
+            <option value="Married" <?php if ($resident['civil_status'] == 'Married') echo 'selected'; ?>>Married</option>
+            <option value="Widowed" <?php if ($resident['civil_status'] == 'Widowed') echo 'selected'; ?>>Widowed</option>
+            <option value="Divorced" <?php if ($resident['civil_status'] == 'Divorced') echo 'selected'; ?>>Divorced</option>
+        </select>
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="laborStatus">Labor Status</label>
+        <select id="laborStatus" name="labor_status" class="form-control border border-secondary">
+            <option value="" selected disabled hidden></option>
+            <option value="Employed" <?php if ($resident['labor_status'] == 'Employed') echo 'selected'; ?>>Employed</option>
+            <option value="Unemployed" <?php if ($resident['labor_status'] == 'Unemployed') echo 'selected'; ?>>Unemployed</option>
+            <option value="Self-Employed" <?php if ($resident['labor_status'] == 'Self-Employed') echo 'selected'; ?>>Self-Employed</option>
+            <option value="Student" <?php if ($resident['labor_status'] == 'Student') echo 'selected'; ?>>Student</option>
+            <option value="Retired" <?php if ($resident['labor_status'] == 'Retired') echo 'selected'; ?>>Retired</option>
+            <option value="Homemaker" <?php if ($resident['labor_status'] == 'Homemaker') echo 'selected'; ?>>Homemaker</option>
+            <option value="Unable to work" <?php if ($resident['labor_status'] == 'Unable to work') echo 'selected'; ?>>Unable to work</option>
+        </select>
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="voterStatus">Voter Status</label>
+        <select id="voterStatus" name="voter_status" class="form-control border border-secondary">
+            <option value="" selected disabled hidden></option>
+            <option value="Registered" <?php if ($resident['voter_status'] == 'Registered') echo 'selected'; ?>>Registered</option>
+            <option value="Unregistered" <?php if ($resident['voter_status'] == 'Unregistered') echo 'selected'; ?>>Unregistered</option>
+        </select>
+    </div>
+</div>
+<div class="row mb-5 justify-content-md-center">
+    <div class="col-md-4 form-group">
+        <label for="pwdStatus">PWD Status</label>
+        <select id="pwdStatus" name="pwd_status" class="form-control border border-secondary">
+            <option value="" selected disabled hidden></option>
+            <option value="yes" <?php if ($resident['pwd_status'] == 'yes') echo 'selected'; ?>>Yes</option>
+            <option value="no" <?php if ($resident['pwd_status'] == 'no') echo 'selected'; ?>>No</option>
+            <option value="pending" <?php if ($resident['pwd_status'] == 'pending') echo 'selected'; ?>>Pending</option>
+            <option value="unknown" <?php if ($resident['pwd_status'] == 'unknown') echo 'selected'; ?>>Unknown</option>
+        </select>
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="fourPsBeneficiary">4P's Beneficiary</label>
+        <select id="fourPsBeneficiary" name="four_p" class="form-control border border-secondary">
+            <option value="" selected disabled hidden></option>
+            <option value="Yes" <?php if ($resident['four_p'] == 'Yes') echo 'selected'; ?>>Yes</option>
+            <option value="No" <?php if ($resident['four_p'] == 'No') echo 'selected'; ?>>No</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label for="longitude">Longitude</label>
+        <input type="text" id="longitude" name="longitude" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['longitude']); ?>" />
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="latitude">Latitude</label>
+        <input type="text" id="latitude" name="latitude" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['latitude']); ?>" />
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="covidVaccineStatus">Covid Vaccine Status</label>
+        <select id="covidVaccineStatus" name="status" class="form-control border border-secondary">
+            <option value="" selected disabled hidden></option>
+            <option value="vaccinated" <?php if ($resident['status'] == 'vaccinated') echo 'selected'; ?>>Vaccinated</option>
+            <option value="unvaccinated" <?php if ($resident['status'] == 'unvaccinated') echo 'selected'; ?>>Unvaccinated</option>
+        </select>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-3 form-group">
+        <label for="id-type">ID Type</label>
+        <select id="id-type" name="id_type" class="form-control border border-secondary" required>
+            <option value="" selected disabled hidden></option>
+            <option value="passport" <?php if ($resident['id_type'] == 'passport') echo 'selected'; ?>>Passport</option>
+            <option value="driver-license" <?php if ($resident['id_type'] == 'driver-license') echo 'selected'; ?>>Driver's License</option>
+            <option value="national-id" <?php if ($resident['id_type'] == 'national-id') echo 'selected'; ?>>National ID</option>
+            <option value="philhealth" <?php if ($resident['id_type'] == 'philhealth') echo 'selected'; ?>>PhilHealth</option>
+        </select>
+    </div>
+    <div class="col-md-3 form-group">
+        <label for="idNumber">ID Number</label>
+        <input type="text" id="idNumber" name="id_number" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['id_number']); ?>" />
+    </div>
+    <div class="col-md-3 form-group">
+        <label for="momFirstName">Mother's First Name</label>
+        <input type="text" id="momFirstName" name="mom_name" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['mom_name']); ?>" />
+    </div>
+    <div class="col-md-3 form-group">
+        <label for="momLastName">Mother's Last Name</label>
+        <input type="text" id="momLastName" name="mom_lname" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['mom_lname']); ?>" />
+    </div>
+</div>
+
             <div class="col-md-3 form-group">
                 <label for="qrCode">QR Code</label>
                 <input type="text" id="qrCode" name="qr_code" class="form-control" value="<?php echo htmlspecialchars($resident['qr_code']); ?>" />
