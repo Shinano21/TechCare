@@ -175,19 +175,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 form-group">
-                <label for="civilStatus">Civil Status</label>
-                <select id="civilStatus" name="civil_status" class="form-control" required>
-                    <option value="single" <?php if ($resident['civil_status'] == 'single') echo 'selected'; ?>>Single</option>
-                    <option value="married" <?php if ($resident['civil_status'] == 'married') echo 'selected'; ?>>Married</option>
-                    <option value="widowed" <?php if ($resident['civil_status'] == 'widowed') echo 'selected'; ?>>Widowed</option>
-                    <option value="divorced" <?php if ($resident['civil_status'] == 'divorced') echo 'selected'; ?>>Divorced</option>
-                </select>
-            </div>
-            <div class="col-md-4 form-group">
-                <label for="laborForceStatus">Labor Force Status</label>
-                <input type="text" id="laborForceStatus" name="labor_status" class="form-control" value="<?php echo htmlspecialchars($resident['labor_status']); ?>" />
-            </div>
+    <div class="col-md-4 form-group">
+        <label for="civilStatus">Civil Status</label>
+        <select id="civilStatus" name="civil_status" class="form-control" required>
+            <option value="single" <?php if ($resident['civil_status'] == 'single') echo 'selected'; ?>>Single</option>
+            <option value="married" <?php if ($resident['civil_status'] == 'married') echo 'selected'; ?>>Married</option>
+            <option value="widowed" <?php if ($resident['civil_status'] == 'widowed') echo 'selected'; ?>>Widowed</option>
+            <option value="divorced" <?php if ($resident['civil_status'] == 'divorced') echo 'selected'; ?>>Divorced</option>
+        </select>
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="laborStatus">Labor Status</label>
+        <select id="laborStatus" name="labor_status" class="form-control">
+            <option value="">Select Labor Status</option>
+            <option value="Employed" <?php if ($resident['labor_status'] == 'Employed') echo 'selected'; ?>>Employed</option>
+            <option value="Unemployed" <?php if ($resident['labor_status'] == 'Unemployed') echo 'selected'; ?>>Unemployed</option>
+            <option value="Self-Employed" <?php if ($resident['labor_status'] == 'Self-Employed') echo 'selected'; ?>>Self-Employed</option>
+            <option value="Student" <?php if ($resident['labor_status'] == 'Student') echo 'selected'; ?>>Student</option>
+            <option value="Retired" <?php if ($resident['labor_status'] == 'Retired') echo 'selected'; ?>>Retired</option>
+            <option value="Homemaker" <?php if ($resident['labor_status'] == 'Homemaker') echo 'selected'; ?>>Homemaker</option>
+            <option value="Unable to work" <?php if ($resident['labor_status'] == 'Unable to work') echo 'selected'; ?>>Unable to work</option>
+        </select>
+    </div>
+</div>
+
             <div class="col-md-4 form-group">
                 <label for="voterStatus">Voter Status</label>
                 <select id="voterStatus" name="voter_status" class="form-control" required>
