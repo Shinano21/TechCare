@@ -4,12 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Resident</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
+<style>
+          body {
+        font-family: 'Poppins', sans-serif;
+        background-image: linear-gradient(135deg, #c2ffd8 10%, #465efb 100%);
+        overflow-x: hidden;
+      }
+      .main-content {
+        margin-left: 250px;
+        padding: 30px;
+      }
+     .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .sidebar a, .offcanvas-body a  {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+        }
+        .sidebar a i,  .offcanvas-body a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .sidebar a:hover,  .offcanvas-body a:hover {
+            background-color: #7AB2B2;
+        }
+        .select-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        background-color: #E8F0F2;
+        margin-bottom: 15px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+    .select-image img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+    @media (max-width: 992px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+</style>
 <body>
-<div class="container">
-    <h1 class="mt-5">Edit Resident</h1>
-
     <?php
     include 'db.php';
 
@@ -84,94 +137,176 @@
     $conn->close();
     ?>
 
-    <form action="edit_resident.php" method="POST" enctype="multipart/form-data">
+<div class="container-fluid">
+      <div class="row ">
+          <!-- Sidebar for Larger Screens -->
+          <div class="col-lg d-none d-lg-block sidebar">
+              <div class="text-center mb-5">
+                  <img src="../images/LOGO.svg" alt="TechCare" width="100">
+              </div>
+              <a href="Dashboard.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
+              <a href="resident.php"><i class="bi bi-people"></i>Residents</a>
+
+              <!-- Services Dropdown -->
+              <div class="dropdown">
+                  <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-wrench"></i>Services
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                      <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                      <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                      <li><a class="dropdown-item" href="#">More</a></li>
+                  </ul>
+              </div>
+
+              <a href="#"><i class="bi bi-bar-chart-line"></i>Visualization</a>
+              <a href="#"><i class="bi bi-file-earmark-text"></i>Reports</a>
+              <a href="#"><i class="bi bi-globe"></i>Website</a>
+              <a href="#"><i class="bi bi-person-badge"></i>ID System</a>
+              <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+          </div>
+
+          <!-- Offcanvas Sidebar for Smaller Screens -->
+          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+              <div class="offcanvas-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                  <div class="text-center mb-5">
+                      <img src="../images/LOGO.svg" alt="TechCare" width="100">
+                  </div>
+                  <a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                  <a href="Resident.php"><i class="bi bi-people"></i>Residents</a>
+
+                  <!-- Services Dropdown -->
+                  <div class="dropdown">
+                      <a href="#" class="dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-wrench"></i>Services
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                          <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                          <li><a class="dropdown-item" href="#">Nutrition</a></li>
+                          <li><a class="dropdown-item" href="#">More</a></li>
+                      </ul>
+                  </div>
+
+                  <a href="#"><i class="bi bi-bar-chart-line"></i>Visualization</a>
+                  <a href="#"><i class="bi bi-file-earmark-text"></i>Reports</a>
+                  <a href="#"><i class="bi bi-globe"></i>Website</a>
+                  <a href="#"><i class="bi bi-person-badge"></i>ID System</a>
+                  <a href="#" onclick="showLogoutModal()"><i class="bi bi-box-arrow-right"></i>Logout</a>
+              </div>
+          </div>
+
+          <!-- Sidebar Toggle Button for Smaller Screens -->
+          <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+              <i class="bi bi-list"></i>
+          </button>
+
+          <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content" >
+
+    <form action="edit_resident.php" method="POST" enctype="multipart/form-data"  style="background-color: white; padding: 20px;">
         <input type="hidden" name="id" value="<?php echo $resident['resident_id']; ?>">
-        
-        <div class="row">
-            <div class="col-md-4 form-group">
+        <h1>Update Resident</h1>
+        <hr>
+        <div class="row align-items-end mb-5">
+            <div class="col-md-3 form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="first_name" class="form-control" required value="<?php echo htmlspecialchars($resident['first_name']); ?>" />
+                <input type="text" id="firstName" name="first_name" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['first_name']); ?>" />
             </div>
-            <div class="col-md-4 form-group">
+            <div class="col-md-3 form-group">
                 <label for="middleName">Middle Name</label>
-                <input type="text" id="middleName" name="middle_name" class="form-control" value="<?php echo htmlspecialchars($resident['middle_name']); ?>" />
+                <input type="text" id="middleName" name="middle_name" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['middle_name']); ?>" />
             </div>
-            <div class="col-md-4 form-group">
+            <div class="col-md-3 form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="last_name" class="form-control" required value="<?php echo htmlspecialchars($resident['last_name']); ?>" />
+                <input type="text" id="lastName" name="last_name" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['last_name']); ?>" />
             </div>
+            <div class="col-md-3 form-group">
+              <div class="select-image">
+                  <img src="placeholder.jpg" alt="Placeholder Image" id="image-preview">
+              </div>
+              <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                  class="form-control-file"
+                  onchange="previewImage(event)"
+              />
+          </div>
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
                 <label for="suffix">Suffix</label>
-                <input type="text" id="suffix" name="suffix_name" class="form-control" value="<?php echo htmlspecialchars($resident['suffix_name']); ?>" />
+                <input type="text" id="suffix" name="suffix_name" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['suffix_name']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="sex">Sex</label>
-                <select id="sex" name="gender" class="form-control" required>
+                <select id="sex" name="gender" class="form-control border border-secondary" required>
                     <option value="male" <?php if ($resident['gender'] == 'male') echo 'selected'; ?>>Male</option>
                     <option value="female" <?php if ($resident['gender'] == 'female') echo 'selected'; ?>>Female</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
                 <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" name="date_of_birth" class="form-control" required value="<?php echo htmlspecialchars($resident['date_of_birth']); ?>" />
+                <input type="date" id="dob" name="date_of_birth" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['date_of_birth']); ?>" />
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-4 form-group">
                 <label for="pob">Place of Birth</label>
-                <input type="text" id="pob" name="place_of_birth" class="form-control" required value="<?php echo htmlspecialchars($resident['place_of_birth']); ?>" />
+                <input type="text" id="pob" name="place_of_birth" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['place_of_birth']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="religion">Religion</label>
-                <input type="text" id="religion" name="religion" class="form-control" value="<?php echo htmlspecialchars($resident['religion']); ?>" />
+                <input type="text" id="religion" name="religion" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['religion']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="citizenship">Citizenship</label>
-                <input type="text" id="citizenship" name="citizenship" class="form-control" required value="<?php echo htmlspecialchars($resident['citizenship']); ?>" />
+                <input type="text" id="citizenship" name="citizenship" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['citizenship']); ?>" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
                 <label for="streetName">Street Name</label>
-                <input type="text" id="streetName" name="street" class="form-control" required value="<?php echo htmlspecialchars($resident['street']); ?>" />
+                <input type="text" id="streetName" name="street" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['street']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="zone">Zone</label>
-                <input type="text" id="zone" name="zone" class="form-control" value="<?php echo htmlspecialchars($resident['zone']); ?>" />
+                <input type="text" id="zone" name="zone" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['zone']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="barangay">Barangay</label>
-                <input type="text" id="barangay" name="barangay" class="form-control" required value="<?php echo htmlspecialchars($resident['barangay']); ?>" />
+                <input type="text" id="barangay" name="barangay" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['barangay']); ?>" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
                 <label for="cityMunicipality">City/Municipality</label>
-                <input type="text" id="cityMunicipality" name="municipal" class="form-control" required value="<?php echo htmlspecialchars($resident['municipal']); ?>" />
+                <input type="text" id="cityMunicipality" name="municipal" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['municipal']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="province">Province</label>
-                <input type="text" id="province" name="province" class="form-control" value="<?php echo htmlspecialchars($resident['province']); ?>" />
+                <input type="text" id="province" name="province" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['province']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="zipCode">Zip Code</label>
-                <input type="text" id="zipCode" name="zipcode" class="form-control" value="<?php echo htmlspecialchars($resident['zipcode']); ?>" />
+                <input type="text" id="zipCode" name="zipcode" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['zipcode']); ?>" />
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-4 form-group">
                 <label for="contactNo">Contact No.</label>
-                <input type="text" id="contactNo" name="contact_number" class="form-control" required value="<?php echo htmlspecialchars($resident['contact_number']); ?>" />
+                <input type="text" id="contactNo" name="contact_number" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['contact_number']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="educationalAttainment">Educational Attainment</label>
-                <input type="text" id="educationalAttainment" name="education" class="form-control" value="<?php echo htmlspecialchars($resident['education']); ?>" />
+                <input type="text" id="educationalAttainment" name="education" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['education']); ?>" />
             </div>
             <div class="col-md-4 form-group">
                 <label for="occupation">Occupation</label>
-                <input type="text" id="occupation" name="occupation" class="form-control" value="<?php echo htmlspecialchars($resident['occupation']); ?>" />
+                <input type="text" id="occupation" name="occupation" class="form-control border border-secondary" value="<?php echo htmlspecialchars($resident['occupation']); ?>" />
             </div>
         </div>
         <div class="row">
@@ -276,8 +411,16 @@
                 <input type="text" id="qrCode" name="qr_code" class="form-control" value="<?php echo htmlspecialchars($resident['qr_code']); ?>" />
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+        <div class="row">
+            <div class="col text-end">
+                <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+            </div>
+          </div>
     </form>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>
