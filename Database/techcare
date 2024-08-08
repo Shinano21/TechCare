@@ -6,8 +6,7 @@ CREATE TABLE `accounts` (
   `password` varchar(255) NOT NULL,
   `user_type` ENUM('resident', 'admin', 'bhw') NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
+  UNIQUE KEY `email` (`email`)
 );
 
 -- Create otp table
