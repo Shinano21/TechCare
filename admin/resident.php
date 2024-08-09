@@ -186,10 +186,11 @@ header('Expires: 0');
                                     <td>{$row['date_of_birth']}</td>
                                     <td>{$row['zone']}</td>
                                     <td>{$row['contact_number']}</td>
-                                    <td>
-                                        <a href='edit_resident.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
-                                        <a href='delete_resident.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
-                                    </td>
+                                   <td>
+                                      <a href='edit_resident.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
+                                      <a href='#' class='btn btn-danger btn-sm' onclick='showDeleteModal({$row['id']});'>Delete</a>
+                                  </td>
+
                                 </tr>";
                         }
                     } else {
@@ -217,6 +218,26 @@ header('Expires: 0');
       </div>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this resident?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a id="confirmDeleteBtn" href="#" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <script>
       // Ensure the modal is hidden on page load
       document.addEventListener('DOMContentLoaded', function() {
@@ -231,6 +252,19 @@ header('Expires: 0');
         document.getElementById('logoutModal').style.display = 'none';
       }
     </script>
+
+    <!--This is the confirmation to delete-->
+    <script type="text/javascript">
+    function showDeleteModal(id) {
+        // Set the href attribute of the confirmation button to the delete link
+        document.getElementById('confirmDeleteBtn').href = 'delete_resident.php?id=' + id;
+        // Show the modal
+        var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        deleteModal.show();
+    }
+</script>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
