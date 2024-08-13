@@ -408,10 +408,13 @@
     </div>
 </div>
 
-            <div class="col-md-3 form-group">
-                <label for="qrCode">QR Code</label>
-                <input type="text" id="qrCode" name="qr_code" class="form-control" value="<?php echo htmlspecialchars($resident['qr_code']); ?>" />
-            </div>
+<div class="col-md-3 form-group">
+    <label for="qrCode">QR Code</label>
+    <input type="text" id="qrCode" name="qr_code" class="form-control" value="<?php echo htmlspecialchars($resident['qr_code']); ?>" />
+    <?php if (!empty($resident['qr_code'])): ?>
+        <img src="../images/<?php echo htmlspecialchars($resident['qr_code']); ?>" alt="QR Code" style="max-width: 100%; margin-top: 10px;">
+    <?php endif; ?>
+</div>
         </div>
         <div class="row">
             <div class="col text-end">
