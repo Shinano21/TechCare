@@ -1,46 +1,44 @@
 <?php
-include 'db.php';
+include 'db.php'; // Include your database connection
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve and sanitize input data
-    $announce_type = $conn->real_escape_string($_POST['announce_type']);
-    $announce_heading = $conn->real_escape_string($_POST['announce_heading']);
-    $announce_body = $conn->real_escape_string($_POST['announce_body']);
-    $post_date = $conn->real_escape_string($_POST['post_date']);
+    // Collect form data
+    $announce_type = $_POST['announce_type'];
+    $announce_heading = $_POST['announce_heading'];
+    $announce_body = $_POST['announce_body'];
+    $post_date = $_POST['post_date'];
 
-    // Handle the image upload securely
-    $announce_pic = '';
+    // Handle file upload
+    $announce_pic = null;
     if (isset($_FILES['announce_pic']) && $_FILES['announce_pic']['error'] == 0) {
         $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES['announce_pic']['name']);
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $announce_pic = $target_dir . basename($_FILES['announce_pic']['name']);
 
-        // Validate the image file type
-        $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-        if (in_array($imageFileType, $allowed_types)) {
-            if (move_uploaded_file($_FILES['announce_pic']['tmp_name'], $target_file)) {
-                $announce_pic = $target_file;
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
-        } else {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        // Ensure the 'uploads' directory exists
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
+
+        // Move the uploaded file to the 'uploads' directory
+        if (!move_uploaded_file($_FILES['announce_pic']['tmp_name'], $announce_pic)) {
+            echo "Sorry, there was an error uploading your file.";
             exit;
         }
     }
 
-    // Prepare the SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("INSERT INTO announcements (home_id, announce_type, announce_heading, announce_body, announce_pic, post_date) VALUES (?, ?, ?, ?, ?, ?)");
-    $home_id = 1; // Replace with the actual home_id if necessary
-    $stmt->bind_param('isssss', $home_id, $announce_type, $announce_heading, $announce_body, $announce_pic, $post_date);
+    // Set the default home_id or fetch dynamically if required
+    $home_id = 1; // Make sure this exists in the home table
 
-    if ($stmt->execute()) {
+    // Insert the announcement data into the database
+    $sql = "INSERT INTO announcements (home_id, announce_type, announce_heading, announce_body, announce_pic, post_date) 
+            VALUES ('$home_id', '$announce_type', '$announce_heading', '$announce_body', '$announce_pic', '$post_date')";
+
+    if ($conn->query($sql) === TRUE) {
         echo "New announcement added successfully";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    $stmt->close();
     $conn->close();
 }
 ?>
@@ -49,11 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Announcement</title>
+    <title>Add Announcement</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Add New Announcement</h1>
+    <h1>Add Announcement</h1>
     <form action="add_announcement.php" method="post" enctype="multipart/form-data">
         <label for="announce_type">Announcement Type:</label><br>
         <input type="text" id="announce_type" name="announce_type" required><br><br>
