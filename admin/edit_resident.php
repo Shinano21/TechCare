@@ -60,6 +60,7 @@
     margin-left: 0;
     padding: 20px;
   }
+  
 }
 </style>
 <body>
@@ -223,18 +224,19 @@
                 <input type="text" id="lastName" name="last_name" class="form-control border border-secondary" required value="<?php echo htmlspecialchars($resident['last_name']); ?>" />
             </div>
             <div class="col-md-3 form-group">
-              <div class="select-image">
-                  <img src="placeholder.jpg" alt="Placeholder Image" id="image-preview">
-              </div>
-              <input
-                  type="file"
-                  id="image"
-                  name="image"
-                  accept="image/*"
-                  class="form-control-file"
-                  onchange="previewImage(event)"
-              />
-          </div>
+            <div class="select-image">
+                <img src="fetch_image.php?id=<?php echo htmlspecialchars($resident['resident_id']); ?>" alt="Resident Image" id="image-preview">
+            </div>
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                class="form-control-file"
+                onchange="previewImage(event)"
+            />
+        </div>
+
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
