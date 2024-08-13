@@ -186,13 +186,14 @@ CREATE TABLE residents (
     status VARCHAR(255),
     longitude DECIMAL(10, 8),
     latitude DECIMAL(10, 8),
-    profile_pic BLOB,
+    profile_pic MEDIUMBLOB,
     id_type VARCHAR(255),
     id_number VARCHAR(255),
     mom_name VARCHAR(255),
     mom_lname VARCHAR(255),
     qr_code VARCHAR(255)
 );
+
 
 -- Create nutrition table
 CREATE TABLE nutrition (
