@@ -145,11 +145,17 @@ header('Expires: 0');
       <div class="container mt-4">
         <h1 class="mt-5">Resident Records</h1>
         <div class="d-flex justify-content-end mb-3">
-          <a href="add_resident.html" class="btn btn-primary">
+          <a href="add_resident.html" class="btn btn-primary" style="margin-right:20px">
             <i class="bi bi-plus-lg"></i> Add Resident
           </a>
+          <a href="add_resident.html" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Print Records
+          </a>
         </div>
-        <table class="table table-bordered mt-3">
+<!-- Search Input Field -->
+<input type="text" id="searchInput" class="form-control mb-3" placeholder="Search residents..." style="width:400px;">
+
+<table class="table table-bordered mt-3">
     <thead>
         <tr>
             <th>Full Name</th>
@@ -161,7 +167,7 @@ header('Expires: 0');
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="residentTableBody">
         <?php
         include 'db.php';
 
@@ -255,9 +261,9 @@ header('Expires: 0');
     }
 </script>
 
-  <!--This is to calculate the age dynamicaly-->
+  <!--This is to calculate the age dynamicaly and Search-->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const ageCells = document.querySelectorAll("td[data-dob]");
     
     ageCells.forEach(function(cell) {
@@ -271,9 +277,31 @@ header('Expires: 0');
         const ageDate = new Date(diff);
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
-});
 
-  </script>
+    // Search Functionality
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('residentTableBody');
+    const tableRows = tableBody.getElementsByTagName('tr');
+
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.toLowerCase();
+        Array.from(tableRows).forEach(function(row) {
+            const fullName = row.cells[0].textContent.toLowerCase();
+            const gender = row.cells[1].textContent.toLowerCase();
+            const age = row.cells[2].textContent.toLowerCase();
+            const birthday = row.cells[3].textContent.toLowerCase();
+            const zone = row.cells[4].textContent.toLowerCase();
+            const contactNumber = row.cells[5].textContent.toLowerCase();
+
+            if (fullName.includes(filter) || gender.includes(filter) || age.includes(filter) || birthday.includes(filter) || zone.includes(filter) || contactNumber.includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
 
 
 
