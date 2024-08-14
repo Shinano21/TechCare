@@ -41,11 +41,11 @@ CREATE TABLE home (
     bg_img VARCHAR(255),
     short_desc TEXT,
     goal TEXT,
-    section_pic VARCHAR(255),
+    section_pic MEDIUMBLOB,
     contact_mess TEXT,
     office_hrs VARCHAR(255),
-    programs_pic VARCHAR(255),
-    announce_pic VARCHAR(255)
+    programs_pic MEDIUMBLOB,
+    announce_pic MEDIUMBLOB
 );
 
 -- Create brgy_health table
@@ -54,7 +54,7 @@ CREATE TABLE brgy_health (
     home_id INT,
     name VARCHAR(255),
     position VARCHAR(255),
-    pic VARCHAR(255),
+    pic MEDIUMBLOB,
     FOREIGN KEY (home_id) REFERENCES home(home_id)
 );
 
@@ -65,7 +65,7 @@ CREATE TABLE programs (
     program_type VARCHAR(255),
     prog_heading VARCHAR(255),
     prog_body TEXT,
-    prog_pic VARCHAR(255),
+    prog_pic MEDIUMBLOB,
     post_date DATE,
     FOREIGN KEY (home_id) REFERENCES home(home_id)
 );
@@ -75,7 +75,7 @@ CREATE TABLE logo (
     logo_id INT AUTO_INCREMENT PRIMARY KEY,
     home_id INT,
     navbar_logo VARCHAR(255),
-    logo_pic VARCHAR(255),
+    logo_pic MEDIUMBLOB,
     center_name VARCHAR(255),
     short_desc TEXT,
     email VARCHAR(255),
@@ -101,11 +101,11 @@ CREATE TABLE contact_us (
 CREATE TABLE about (
     about_id INT AUTO_INCREMENT PRIMARY KEY,
     home_id INT,
-    header_pic VARCHAR(255),
+    header_pic MEDIUMBLOB,
     section_head VARCHAR(255),
     section_subhead VARCHAR(255),
     section_body TEXT,
-    section_pic VARCHAR(255),
+    section_pic MEDIUMBLOB,
     FOREIGN KEY (home_id) REFERENCES home(home_id)
 );
 
@@ -116,7 +116,7 @@ CREATE TABLE announcements (
     announce_type VARCHAR(255),
     announce_heading VARCHAR(255),
     announce_body TEXT,
-    announce_pic VARCHAR(255),
+    announce_pic MEDIUMBLOB,
     post_date DATE,
     FOREIGN KEY (home_id) REFERENCES home(home_id)
 );
@@ -186,13 +186,14 @@ CREATE TABLE residents (
     status VARCHAR(255),
     longitude DECIMAL(10, 8),
     latitude DECIMAL(10, 8),
-    profile_pic BLOB,
+    profile_pic MEDIUMBLOB,
     id_type VARCHAR(255),
     id_number VARCHAR(255),
     mom_name VARCHAR(255),
     mom_lname VARCHAR(255),
     qr_code VARCHAR(255)
 );
+
 
 -- Create nutrition table
 CREATE TABLE nutrition (
