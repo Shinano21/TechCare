@@ -140,71 +140,62 @@ header('Expires: 0');
             <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
                 <i class="bi bi-list"></i>
             </button>
-      <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content">
-      <nav class="navbar navbar-light bg-light border-bottom border-dark rounded-bottom">
-        <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1 bi bi-geo-alt-fill">Barangay Estanza</span>
-          <span class="navbar-text bi bi-person-check">
-            Admin User
-          </span>
-        </div>
-      </nav>
 
+      <div class="col-lg offset-lg-3 mt-4 mt-lg-0 main-content">
       <div class="container mt-4">
-        <h1 class="mt-5">Residents</h1>
+        <h1 class="mt-5">Resident Records</h1>
         <div class="d-flex justify-content-end mb-3">
           <a href="add_resident.html" class="btn btn-primary">
             <i class="bi bi-plus-lg"></i> Add Resident
           </a>
         </div>
         <table class="table table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th>Full Name</th>
-                    <th>Gender</th>
-                    <th>Age</th>
-                    <th>Birthday</th>
-                    <th>Zone</th>
-                    <th>Contact Number</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                include 'db.php';
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Birthday</th>
+            <th>Zone</th>
+            <th>Contact Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        include 'db.php';
 
-                $sql = "SELECT resident_id AS id, CONCAT(first_name, ' ', middle_name, ' ', last_name, ' ', suffix_name) AS full_name, gender, date_of_birth, zone, contact_number, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age FROM residents";
-                $result = $conn->query($sql);
+        $sql = "SELECT resident_id AS id, CONCAT(first_name, ' ', middle_name, ' ', last_name, ' ', suffix_name) AS full_name, gender, date_of_birth, zone, contact_number FROM residents";
+        $result = $conn->query($sql);
 
-                if ($result) {  // Check if the query was successful
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
-                                    <td>{$row['full_name']}</td>
-                                    <td>{$row['gender']}</td>
-                                    <td>{$row['age']}</td>
-                                    <td>{$row['date_of_birth']}</td>
-                                    <td>{$row['zone']}</td>
-                                    <td>{$row['contact_number']}</td>
-                                   <td>
-                                      <a href='edit_resident.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
-                                      <a href='#' class='btn btn-danger btn-sm' onclick='showDeleteModal({$row['id']});'>Delete</a>
-                                  </td>
-
-                                </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='7' class='text-center'>No residents found</td></tr>";
-                    }
-                } else {
-                    // Query failed
-                    echo "<tr><td colspan='7' class='text-center'>Error: " . $conn->error . "</td></tr>";
+        if ($result) {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>
+                            <td>{$row['full_name']}</td>
+                            <td>{$row['gender']}</td>
+                            <td data-dob='{$row['date_of_birth']}'></td>
+                            <td>{$row['date_of_birth']}</td>
+                            <td>{$row['zone']}</td>
+                            <td>{$row['contact_number']}</td>
+                           <td>
+                              <a href='edit_resident.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
+                              <a href='#' class='btn btn-danger btn-sm' onclick='showDeleteModal({$row['id']});'>Delete</a>
+                          </td>
+                        </tr>";
                 }
+            } else {
+                echo "<tr><td colspan='7' class='text-center'>No residents found</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7' class='text-center'>Error: " . $conn->error . "</td></tr>";
+        }
 
-                $conn->close();
-                ?>
-            </tbody>
-        </table>
+        $conn->close();
+        ?>
+    </tbody>
+</table>
+
       </div>
     </div>
 
@@ -263,6 +254,26 @@ header('Expires: 0');
         deleteModal.show();
     }
 </script>
+
+  <!--This is to calculate the age dynamicaly-->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const ageCells = document.querySelectorAll("td[data-dob]");
+    
+    ageCells.forEach(function(cell) {
+        const dob = new Date(cell.getAttribute("data-dob"));
+        const age = calculateAge(dob);
+        cell.textContent = age;
+    });
+
+    function calculateAge(dob) {
+        const diff = Date.now() - dob.getTime();
+        const ageDate = new Date(diff);
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+});
+
+  </script>
 
 
 
