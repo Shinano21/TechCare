@@ -45,17 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $qrcodePath = $path . $qrImage;
     QRcode::png($qrData, $qrcodePath, 'H', 4, 4);
 
-    // Handle profile picture upload
-    $profilePic = null;
-    if (!empty($_FILES['image']['tmp_name'])) {
-        $profilePic = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-    }
+  // Handle profile picture upload
+$profilePic = null;
+if (!empty($_FILES['image']['tmp_name'])) {
+    $uploadDir = '../images/'; // Folder where images will be saved
+    $profilePic = $uploadDir . basename($_FILES['image']['name']);
+    move_uploaded_file($_FILES['image']['tmp_name'], $profilePic);
+}
 
-    // Prepare SQL query
-    $sql = "INSERT INTO residents 
-            (first_name, middle_name, last_name, suffix_name, gender, date_of_birth, place_of_birth, religion, citizenship, street, zone, barangay, municipal, province, zipcode, contact_number, education, occupation, civil_status, labor_status, voter_status, pwd_status, four_p, status, longitude, latitude, profile_pic, id_type, id_number, mom_name, mom_lname, qr_code)
-            VALUES 
-            ('$firstName', '$middleName', '$lastName', '$suffix', '$sex', '$dateOfBirth', '$placeOfBirth', '$religion', '$citizenship', '$street', '$zone', '$barangay', '$municipal', '$province', '$zipcode', '$contactNumber', '$education', '$occupation', '$civilStatus', '$laborStatus', '$voterStatus', '$pwdStatus', '$fourP', '$covidVaccineStatus', '$longitude', '$latitude', '$profilePic', '$idType', '$idNumber', '$momFirstName', '$momLastName', '$qrImage')";
+// Prepare SQL query
+$sql = "INSERT INTO residents 
+        (first_name, middle_name, last_name, suffix_name, gender, date_of_birth, place_of_birth, religion, citizenship, street, zone, barangay, municipal, province, zipcode, contact_number, education, occupation, civil_status, labor_status, voter_status, pwd_status, four_p, status, longitude, latitude, profile_pic, id_type, id_number, mom_name, mom_lname, qr_code)
+        VALUES 
+        ('$firstName', '$middleName', '$lastName', '$suffix', '$sex', '$dateOfBirth', '$placeOfBirth', '$religion', '$citizenship', '$street', '$zone', '$barangay', '$municipal', '$province', '$zipcode', '$contactNumber', '$education', '$occupation', '$civilStatus', '$laborStatus', '$voterStatus', '$pwdStatus', '$fourP', '$covidVaccineStatus', '$longitude', '$latitude', '$profilePic', '$idType', '$idNumber', '$momFirstName', '$momLastName', '$qrImage')";
+
 
     // Execute SQL query and handle response
     if (mysqli_query($conn, $sql)) {

@@ -64,79 +64,89 @@
 }
 </style>
 <body>
-    <?php
-    include 'db.php';
+<?php
+include 'db.php';
 
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-        $sql = "SELECT * FROM residents WHERE resident_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    $sql = "SELECT * FROM residents WHERE resident_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $resident = $result->fetch_assoc();
-        } else {
-            echo "<p>Resident not found</p>";
-            exit();
-        }
-
-        $stmt->close();
+    if ($result->num_rows > 0) {
+        $resident = $result->fetch_assoc();
+    } else {
+        echo "<p>Resident not found</p>";
+        exit();
     }
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Retrieve form data
-        $params = [];
-        $types = '';
-        $columns = [
-            'first_name', 'middle_name', 'last_name', 'suffix_name', 'gender', 'date_of_birth', 
-            'place_of_birth', 'religion', 'citizenship', 'street', 'zone', 'barangay', 'municipal', 
-            'province', 'zipcode', 'contact_number', 'education', 'occupation', 'civil_status', 
-            'labor_status', 'voter_status', 'pwd_status', 'four_p', 'status', 'longitude', 'latitude', 
-            'profile_pic', 'id_type', 'id_number', 'mom_name', 'mom_lname', 'qr_code'
-        ];
+    $stmt->close();
+}
 
-        foreach ($columns as $column) {
-            $params[] = $_POST[$column] ?? '';
-            $types .= 's';
-        }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve form data
+    $params = [];
+    $types = '';
+    $columns = [
+        'first_name', 'middle_name', 'last_name', 'suffix_name', 'gender', 'date_of_birth', 
+        'place_of_birth', 'religion', 'citizenship', 'street', 'zone', 'barangay', 'municipal', 
+        'province', 'zipcode', 'contact_number', 'education', 'occupation', 'civil_status', 
+        'labor_status', 'voter_status', 'pwd_status', 'four_p', 'status', 'longitude', 'latitude', 
+        'profile_pic', 'id_type', 'id_number', 'mom_name', 'mom_lname', 'qr_code'
+    ];
 
-        // File upload handling
-        if ($_FILES['image']['name']) {
-            $target_dir = "uploads/";
-            $target_file = $target_dir . basename($_FILES["image"]["name"]);
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+    foreach ($columns as $column) {
+        $params[] = $_POST[$column] ?? '';
+        $types .= 's';
+    }
+
+    // File upload handling
+    if ($_FILES['image']['name']) {
+        $target_dir = "../images/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+        // Check if the file upload was successful
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
             $params[array_search('profile_pic', $columns)] = $target_file;
-        }
-
-        $params[] = $_POST['id'];
-        $types .= 'i';
-
-        $sql = "UPDATE residents SET " . implode('=?, ', $columns) . "=? WHERE resident_id=?";
-        $stmt = $conn->prepare($sql);
-
-        $bind_names[] = $types;
-        for ($i = 0; $i < count($params); $i++) {
-            $bind_name = 'bind' . $i;
-            $$bind_name = $params[$i];
-            $bind_names[] = &$$bind_name;
-        }
-        call_user_func_array([$stmt, 'bind_param'], $bind_names);
-
-        if ($stmt->execute()) {
-            header('Location: resident.php'); // Redirect back to the residents page
-            exit();
         } else {
-            echo "Error updating record: " . $conn->error;
+            echo "Error uploading file.";
+            exit();
         }
-
-        $stmt->close();
+    } else {
+        // Retain the old profile picture if no new file is uploaded
+        $params[array_search('profile_pic', $columns)] = $resident['profile_pic'];
     }
 
-    $conn->close();
-    ?>
+    $params[] = $_POST['id'];
+    $types .= 'i';
+
+    $sql = "UPDATE residents SET " . implode('=?, ', $columns) . "=? WHERE resident_id=?";
+    $stmt = $conn->prepare($sql);
+
+    $bind_names[] = $types;
+    for ($i = 0; $i < count($params); $i++) {
+        $bind_name = 'bind' . $i;
+        $$bind_name = $params[$i];
+        $bind_names[] = &$$bind_name;
+    }
+    call_user_func_array([$stmt, 'bind_param'], $bind_names);
+
+    if ($stmt->execute()) {
+        header('Location: resident.php'); // Redirect back to the residents page
+        exit();
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
+?>
+
 
 <div class="container-fluid">
       <div class="row ">
