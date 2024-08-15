@@ -80,17 +80,6 @@
 
     </style>
 
-<script>
-  function previewImage(event) {
-      var reader = new FileReader();
-      reader.onload = function() {
-          var output = document.getElementById('image-preview');
-          output.src = reader.result;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-  }
-</script>
-
   </head>
   <body>
     <div class="container-fluid">

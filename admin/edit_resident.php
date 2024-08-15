@@ -425,6 +425,24 @@
     </div>
 </div>
 
+    <!--This is the preview image script-->
+    <script>
+    function previewImage(event) {
+        const imagePreview = document.getElementById('image-preview');
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
