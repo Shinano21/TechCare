@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // File upload handling
     if ($_FILES['image']['name']) {
-        $target_dir = "../images/";
+        $target_dir = "../profile/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
         // Check if the file upload was successful
@@ -422,7 +422,7 @@ $conn->close();
     <label for="qrCode">QR Code</label>
     <input type="text" id="qrCode" name="qr_code" class="form-control" value="<?php echo htmlspecialchars($resident['qr_code']); ?>" />
     <?php if (!empty($resident['qr_code'])): ?>
-        <img src="../images/<?php echo htmlspecialchars($resident['qr_code']); ?>" alt="QR Code" style="max-width: 100%; margin-top: 10px;">
+        <img src="../qr/<?php echo htmlspecialchars($resident['qr_code']); ?>" alt="QR Code" style="max-width: 100%; margin-top: 10px;">
     <?php endif; ?>
 </div>
         </div>

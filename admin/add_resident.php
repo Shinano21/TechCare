@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Generate QR Code
     $qrData = "Name: $firstName $middleName $lastName\nDOB: $dateOfBirth\nPlace of Birth: $placeOfBirth";
-    $path = '../images/';
+    $path = '../qr/';
     $formattedFirstName = preg_replace('/\s+/', '_', $firstName); // Replace spaces with underscores
     $formattedLastName = preg_replace('/\s+/', '_', $lastName); // Replace spaces with underscores
     $timestamp = time();
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Handle profile picture upload
 $profilePic = null;
 if (!empty($_FILES['image']['tmp_name'])) {
-    $uploadDir = '../images/'; // Folder where images will be saved
+    $uploadDir = '../profile/'; // Folder where images will be saved
     $profilePic = $uploadDir . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'], $profilePic);
 }

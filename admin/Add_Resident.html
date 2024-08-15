@@ -471,14 +471,20 @@
               </select>
             </div>
             <div class="col-md-3 form-group">
-              <label for="idNumber">ID Number</label>
-              <input
-                type="text"
-                id="idNumber"
-                name="idNumber"
-                class="form-control  border border-secondary"
-              />
-            </div>
+    <label for="idNumber">ID Number</label>
+    <input
+        type="text"
+        id="idNumber"
+        name="idNumber"
+        class="form-control border border-secondary"
+        maxlength="16"  
+        required        
+        pattern="\d{16}" 
+        title="ID Number must be exactly 16 digits." 
+    />
+    <small class="form-text text-danger" id="idNumberWarning" style="display:none;">ID Number must be exactly 16 digits.</small>
+</div>
+
             <div class="col-md-3 form-group">
               <label for="momFirstName">Mother's First Name</label>
               <input
