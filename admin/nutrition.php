@@ -40,6 +40,7 @@ $conn->close();
         body {
             font-family: 'Poppins', sans-serif;
             background-image: linear-gradient(135deg, #C2FFD8 10%, #465EFB 100%);
+            overflow-x:hidden;
         }
         .main-content {
             min-height: 100vh; /* Use min-height to allow for dynamic content */

@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         echo "Record added successfully!";
-        header("Location: nutrition_table.php");
+        header("Location: nutrition.php");
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -55,6 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         body {
             font-family: 'Poppins', sans-serif;
             background-image: linear-gradient(135deg, #C2FFD8 10%, #465EFB 100%);
+            overflow-x:hidden;
+
         }
         .select2-container--default .select2-selection--single {
             height: 38px;
@@ -219,11 +221,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <textarea id="remarks" name="remarks" class="form-control"></textarea>
                     </div>
 
-                    <div class="d-flex justify-content-end mt-5">
+                    <div class="d-grid mt-5">
                     <button type="submit" class="btn btn-primary">Add Record</button>
-                    <a href="nutrition.php" class="btn btn-secondary ms-2">Back</a>
+                </div>
+                <div class="text-center mt-3">
+                <a href="nutrition.php" class="btn btn-link ms-2">Back to Nutrition Records</a>
                     </div>
-
                 </form>
                 <br>
             </div>
