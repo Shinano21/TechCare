@@ -55,6 +55,7 @@ $conn->close();
             left: 0;
             height: 100vh;
             z-index: 1000;
+            padding-top:20px;
 }
         .sidebar a, .offcanvas-body a {
             padding: 10px 15px;
