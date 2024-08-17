@@ -41,11 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("isssddssi", $resident_id, $nutrition_type, $supplements, $date_assessed, $height, $weight, $status, $remarks, $nutrition_id);
 
     if ($stmt->execute()) {
-        echo "Record updated successfully!";
-        header("Location: nutrition_table.php");
-        exit();
+        echo "<script>
+                var updateSuccess = true;
+              </script>";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "<script>
+                alert('Error: " . $stmt->error . "');
+              </script>";
     }
 
     $stmt->close();
@@ -60,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Nutrition Record</title>
     <!-- Include Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
+     <!-- Include Choices.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -235,19 +238,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
-                        </div>
+</div>
 
-    <!-- Include Select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Initialize Select2
-            $('.select2').select2({
-                placeholder: 'Type resident name or ID',
-                allowClear: true
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Nutrition record updated successfully!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="successRedirectButton">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof updateSuccess !== 'undefined' && updateSuccess) {
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+
+            // Redirect after the user clicks OK
+            document.getElementById('successRedirectButton').addEventListener('click', function () {
+                window.location.href = 'nutrition.php';
             });
+        }
+    });
+</script>
+
+     <!-- Include Choices.js JS -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectElement = document.querySelector('.select2');
+        const choices = new Choices(selectElement, {
+            placeholder: true,
+            searchPlaceholderValue: 'Type resident name or ID',
+            removeItemButton: true,
         });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    });
+</script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
 </body>
 </html>

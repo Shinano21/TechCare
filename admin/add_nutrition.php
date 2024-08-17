@@ -12,6 +12,7 @@ if ($resident_result->num_rows > 0) {
 }
 
 // Handle form submission for adding a new record
+$success = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resident_id = $_POST['resident_id'];
     $nutrition_type = $_POST['nutrition_type'];
@@ -28,9 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("isssddss", $resident_id, $nutrition_type, $supplements, $date_assessed, $height, $weight, $status, $remarks);
 
     if ($stmt->execute()) {
-        echo "Record added successfully!";
-        header("Location: nutrition.php");
-        exit();
+        $success = true;
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -40,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Nutrition Record</title>
     <!-- Include Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/choices.js@9.1.0/public/assets/styles/choices.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/choices.js@9.1.0/public/assets/scripts/choices.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -176,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <hr>
                     <div class="mb-3">
                         <label for="resident_id" class="form-label">Resident (Type Name or ID):</label>
-                        <select id="resident_id" name="resident_id" class="form-select select2" required>
+                        <select id="resident_id" name="resident_id" class="form-select" required>
                             <option value="">Select Resident</option>
                             <?php foreach ($residents as $resident): ?>
                                 <option value="<?php echo $resident['resident_id']; ?>">
@@ -184,6 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </option>
                             <?php endforeach; ?>
                         </select>
+
                     </div>
 
                     <div class="mb-3">
@@ -232,17 +234,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+    <!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Record added successfully!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="redirectButton">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Include Select2 JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<!--Activates the modal-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        <?php if ($success): ?>
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'), {
+                keyboard: false
+            });
+            successModal.show();
+
+            document.getElementById('redirectButton').addEventListener('click', function() {
+                window.location.href = 'nutrition.php';
+            });
+        <?php endif; ?>
+    });
+</script>
+
+
+<!-- Include Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>
 
