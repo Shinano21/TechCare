@@ -197,7 +197,7 @@ $conn->close();
                       <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                           <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
                           <li><a class="dropdown-item" href="immunization.php">Immunization</a></li>
-                          <li><a class="dropdown-item" href="#">More</a></li>
+                          <li><a class="dropdown-item" href="nutrition.php">Nutrition</a></li>
                       </ul>
                   </div>
 

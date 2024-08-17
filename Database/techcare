@@ -233,3 +233,14 @@ CREATE TABLE immunization (
     notes TEXT,
     FOREIGN KEY (resident_id) REFERENCES residents(resident_id)
 );
+
+
+CREATE TABLE animal_bite (
+    anibite_id INT AUTO_INCREMENT PRIMARY KEY,
+    resident_id INT,
+    date_of_exposure DATE,
+    nature_of_bite VARCHAR(255),
+    category_of_bite VARCHAR(255),
+    actions_taken TEXT,
+    FOREIGN KEY (resident_id) REFERENCES residents(resident_id)
+);
