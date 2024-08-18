@@ -122,9 +122,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="bi bi-wrench"></i>Services
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                        <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
+                         <li><a class="dropdown-item" href="admin_create.php">Create Account</a></li>
                         <li><a class="dropdown-item" href="immunization.php">Immunization</a></li>
                         <li><a class="dropdown-item" href="nutrition.php">Nutrition</a></li>
+                        <li><a class="dropdown-item" href="animal_bite.php">Animal Bite</a></li>
                         <li><a class="dropdown-item" href="#">More</a></li>
                     </ul>
                 </div>
