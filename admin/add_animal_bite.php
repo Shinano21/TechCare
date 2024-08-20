@@ -254,6 +254,18 @@ $conn->close(); // Close the database connection
         });
     </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var residentSelect = document.getElementById('resident_id');
+        new Choices(residentSelect, {
+            searchEnabled: true,
+            itemSelectText: '',
+            placeholderValue: 'Select Resident',
+        });
+    });
+</script>
+
+
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
