@@ -3,7 +3,7 @@ include 'db.php'; // Include the database connection
 
 // Fetch all residents for the dropdown
 $residents = [];
-$resident_sql = "SELECT resident_id, CONCAT(first_name, ' ', middle_name, ' ', last_name, ' (ID: ', resident_id, ')') AS full_name FROM residents";
+$resident_sql = "SELECT resident_id, CONCAT(first_name, ' ', middle_name, ' ', last_name, ' (ID: ', id_number, ')') AS full_name FROM residents";
 $resident_result = $conn->query($resident_sql);
 if ($resident_result->num_rows > 0) {
     while ($row = $resident_result->fetch_assoc()) {
