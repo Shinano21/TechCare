@@ -1,7 +1,7 @@
 header('Content-Type: application/json');
 include 'db.php'; // Include the database connection file
 
-$query = "SELECT COUNT(*) as population, YEAR(date_of_birth) as year FROM residents GROUP BY year";
+$query = "SELECT status, COUNT(*) as count FROM nutrition GROUP BY status";
 $result = $conn->query($query);
 $data = [];
 

@@ -1,7 +1,9 @@
 header('Content-Type: application/json');
 include 'db.php'; // Include the database connection file
 
-$query = "SELECT COUNT(*) as population, YEAR(date_of_birth) as year FROM residents GROUP BY year";
+$query = "SELECT longitude, latitude, COUNT(*) as count FROM residents r
+          JOIN animal_bite a ON r.resident_id = a.resident_id
+          GROUP BY longitude, latitude";
 $result = $conn->query($query);
 $data = [];
 
